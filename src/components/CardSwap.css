@@ -1,0 +1,44 @@
+.card-swap-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  perspective: 900px;
+  overflow: visible;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 14px;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  background: #0e1426;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* solo propiedades que NO chocan con el transform de GSAP */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover en la card del frente (la que está encima recibe el puntero) */
+.card:hover {
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow:
+    0 0 45px -8px rgba(34, 211, 238, 0.55),
+    0 24px 60px -20px rgba(0, 0, 0, 0.75);
+  filter: brightness(1.08);
+}
+
+@media (max-width: 768px) {
+  .card-swap-container {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+}
