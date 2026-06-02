@@ -4,6 +4,16 @@ Sitio web oficial de **NeXo** — desarrollo de **páginas web, sistemas a medid
 
 > 🚀 *Impulsamos tu negocio al siguiente nivel.*
 
+<p align="center">
+  <a href="https://ne-xo-page.vercel.app/">
+    <img src="https://img.shields.io/badge/Ver%20en%20vivo-NeXo-22d3ee?style=for-the-badge&logo=vercel&logoColor=white" alt="Ver en vivo" />
+  </a>
+</p>
+
+🔗 **Sitio en vivo:** [ne-xo-page.vercel.app](https://ne-xo-page.vercel.app/)
+
+![Vista previa de NeXo](public/screenshot.png)
+
 ---
 
 ## ✨ Características

@@ -72,7 +72,7 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative overflow-hidden px-6 py-28"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-28"
       onMouseEnter={() => setCursorActive(true)}
       onMouseLeave={() => setCursorActive(false)}
     >
@@ -85,7 +85,7 @@ export default function Contact() {
       <div className="pointer-events-none absolute left-1/4 top-0 h-[420px] w-[600px] -translate-x-1/2 rounded-full bg-nexo-blue/10 blur-[130px]" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-[360px] w-[520px] translate-x-1/4 rounded-full bg-nexo-cyan/10 blur-[130px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
         {/* Encabezado */}
         <div className="mb-14 text-center">
           <div className="mb-5 flex items-center justify-center gap-3">

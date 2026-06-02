@@ -109,9 +109,9 @@ export default function Portfolio() {
   return (
     <section
       id="portafolio"
-      className="overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
+      className="flex min-h-screen flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto w-full max-w-6xl px-6">
         {isMobile ? (
           // ===== Móvil: encabezado + lista simple =====
           <div className="flex flex-col gap-10">
