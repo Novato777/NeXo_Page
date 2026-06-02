@@ -5,10 +5,10 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="flex min-h-screen flex-col justify-center px-6 py-24"
+      className="flex min-h-screen flex-col justify-center px-6 py-12 [@media(max-height:780px)]:py-6"
     >
       <div className="mx-auto w-full max-w-6xl">
-        <div className="mb-16 text-center">
+        <div className="mb-8 text-center [@media(max-height:780px)]:mb-4">
           {/* Eyebrow con líneas a los lados */}
           <div className="mb-5 flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-nexo-cyan sm:w-12" />

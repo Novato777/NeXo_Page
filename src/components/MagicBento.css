@@ -195,6 +195,15 @@
   }
 }
 
+/* Pantallas de poca altura (laptops 768p): filas más bajas para que el
+   mosaico completo entre en una sola pantalla sin cortarse. */
+@media (min-width: 1024px) and (max-height: 780px) {
+  .card-grid {
+    grid-auto-rows: 118px;
+    gap: 0.6em;
+  }
+}
+
 /* Border glow effect (usa el color de marca via --glow-color) */
 .magic-bento-card--border-glow::after {
   content: '';

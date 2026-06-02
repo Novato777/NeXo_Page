@@ -72,7 +72,7 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-28"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-12 [@media(max-height:780px)]:py-6"
       onMouseEnter={() => setCursorActive(true)}
       onMouseLeave={() => setCursorActive(false)}
     >
@@ -87,7 +87,7 @@ export default function Contact() {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         {/* Encabezado */}
-        <div className="mb-14 text-center">
+        <div className="mb-8 text-center [@media(max-height:780px)]:mb-4">
           <div className="mb-5 flex items-center justify-center gap-3">
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-nexo-cyan sm:w-14" />
             <span className="text-sm font-bold uppercase tracking-[0.35em] text-nexo-cyan">
@@ -116,7 +116,7 @@ export default function Contact() {
         <div className="contact-glow overflow-hidden">
           <div className="grid md:grid-cols-2">
             {/* Columna izquierda: formulario que abre WhatsApp pre-llenado */}
-            <div className="relative border-b border-nexo-border p-8 sm:p-10 md:border-b-0 md:border-r md:p-12">
+            <div className="relative border-b border-nexo-border p-8 sm:p-10 md:border-b-0 md:border-r md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
               <h3 className="text-2xl font-bold sm:text-3xl">
                 Cuéntanos de tu proyecto
               </h3>
@@ -125,7 +125,7 @@ export default function Contact() {
                 respondemos en minutos.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4">
+              <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     name="nombre"
@@ -185,7 +185,7 @@ export default function Contact() {
             </div>
 
             {/* Columna derecha: métodos de contacto (tarjetas) */}
-            <div className="flex flex-col justify-center gap-3 p-8 sm:p-10 md:p-12">
+            <div className="flex flex-col justify-center gap-3 p-8 sm:p-10 md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
               <p className="mb-1 text-xs font-semibold uppercase tracking-[0.25em] text-nexo-muted">
                 O escríbenos directo
               </p>
