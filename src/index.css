@@ -18,6 +18,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Evita el scroll horizontal en móvil que provocan los efectos decorativos
+   (glows de fondo, spotlight de 800px, etc.) y que hacía que TODAS las
+   secciones se vieran "cortadas a la derecha".
+   Usamos `clip` y no `hidden` a propósito: `hidden` crea un contenedor de
+   scroll y rompería el `position: sticky` del fondo Hyperspeed. */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--color-nexo-bg);
   color: var(--color-nexo-text);

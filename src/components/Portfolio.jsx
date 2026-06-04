@@ -54,6 +54,103 @@ function Preview({ project }) {
   )
 }
 
+// ===== Móvil: carrusel horizontal con swipe táctil + flechas + puntitos =====
+function MobileCarousel() {
+  const trackRef = useRef(null)
+  const [active, setActive] = useState(0)
+
+  const scrollToIndex = (i) => {
+    const track = trackRef.current
+    if (!track) return
+    const clamped = Math.max(0, Math.min(i, projects.length - 1))
+    const card = track.children[clamped]
+    if (!card) return
+    const left = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2
+    track.scrollTo({ left, behavior: "smooth" })
+  }
+
+  const onScroll = () => {
+    const track = trackRef.current
+    if (!track) return
+    const center = track.scrollLeft + track.clientWidth / 2
+    let best = 0
+    let bestDist = Infinity
+    Array.from(track.children).forEach((c, i) => {
+      const cc = c.offsetLeft + c.clientWidth / 2
+      const d = Math.abs(cc - center)
+      if (d < bestDist) {
+        bestDist = d
+        best = i
+      }
+    })
+    setActive(best)
+  }
+
+  return (
+    <div>
+      {/* Pista deslizable: cada tarjeta ocupa 85% y deja asomar la siguiente */}
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-1"
+      >
+        {projects.map((p) => {
+          const cardInner = (
+            <div className="h-72 overflow-hidden rounded-2xl border border-nexo-border bg-nexo-panel">
+              <Preview project={p} />
+            </div>
+          )
+          return (
+            <div key={p.id} className="w-[85%] shrink-0 snap-center">
+              {p.link ? (
+                <a href={p.link} target="_blank" rel="noreferrer">
+                  {cardInner}
+                </a>
+              ) : (
+                cardInner
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Controles: flecha · puntitos · flecha */}
+      <div className="mt-6 flex items-center justify-center gap-4">
+        <button
+          onClick={() => scrollToIndex(active - 1)}
+          disabled={active === 0}
+          aria-label="Proyecto anterior"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-nexo-border bg-nexo-bg/70 text-nexo-text transition-colors hover:border-nexo-cyan hover:text-nexo-cyan disabled:opacity-30"
+        >
+          <ChevronLeftIcon />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {projects.map((p, i) => (
+            <button
+              key={p.id}
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Ir al proyecto ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === active ? "w-6 bg-nexo-cyan" : "w-2 bg-nexo-border"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => scrollToIndex(active + 1)}
+          disabled={active === projects.length - 1}
+          aria-label="Proyecto siguiente"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-nexo-border bg-nexo-bg/70 text-nexo-text transition-colors hover:border-nexo-cyan hover:text-nexo-cyan disabled:opacity-30"
+        >
+          <ChevronRightIcon />
+        </button>
+      </div>
+    </div>
+  )
+}
+
 // Encabezado (columna izquierda)
 function Header() {
   return (
@@ -113,25 +210,10 @@ export default function Portfolio() {
     >
       <div className="mx-auto w-full max-w-6xl px-6">
         {isMobile ? (
-          // ===== Móvil: encabezado + lista simple =====
+          // ===== Móvil: encabezado + carrusel deslizable =====
           <div className="flex flex-col gap-10">
             <Header />
-            <div className="flex flex-col gap-6">
-              {projects.map((p) => {
-                const cardInner = (
-                  <div className="h-64 overflow-hidden rounded-2xl border border-nexo-border bg-nexo-panel">
-                    <Preview project={p} />
-                  </div>
-                )
-                return p.link ? (
-                  <a key={p.id} href={p.link} target="_blank" rel="noreferrer">
-                    {cardInner}
-                  </a>
-                ) : (
-                  <div key={p.id}>{cardInner}</div>
-                )
-              })}
-            </div>
+            <MobileCarousel />
           </div>
         ) : (
           // ===== Escritorio: texto + Card Swap =====
