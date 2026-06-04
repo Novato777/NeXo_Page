@@ -114,7 +114,7 @@ export default function Contact() {
 
         {/* Panel principal con borde glow animado */}
         <div className="contact-glow overflow-hidden">
-          <div className="grid md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Columna izquierda: formulario que abre WhatsApp pre-llenado */}
             <div className="relative border-b border-nexo-border p-8 sm:p-10 md:border-b-0 md:border-r md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
               <h3 className="text-2xl font-bold sm:text-3xl">
@@ -126,7 +126,7 @@ export default function Contact() {
               </p>
 
               <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5">
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <input
                     name="nombre"
                     value={form.nombre}
@@ -168,7 +168,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="cursor-target glow inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-8 py-4 font-semibold text-nexo-bg transition-transform hover:scale-[1.02]"
+                  className="cursor-target glow inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-6 py-4 font-semibold text-nexo-bg transition-transform hover:scale-[1.02] sm:px-8"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   Enviar por WhatsApp
