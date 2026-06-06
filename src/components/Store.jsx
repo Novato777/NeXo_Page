@@ -1,16 +1,18 @@
 import { useState } from "react"
 import ScrollReveal from "./ScrollReveal"
-import { products, buyLink } from "../data/store"
+import { products, buyLink, discountPercent } from "../data/store"
 import { BagIcon, WhatsAppIcon } from "./Icons"
 
-// Tarjeta de producto de la vitrina NeXo Drop.
+// Tarjeta de producto estilo Mercado Libre (tema oscuro):
+// imagen · precio grande · precio tachado + % descuento · nombre · botón pedir.
 function ProductCard({ product }) {
   const [imgError, setImgError] = useState(false)
   const showImage = product.image && !imgError
   const soon = product.price === "Pronto"
+  const discount = discountPercent(product)
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-nexo-border bg-nexo-panel transition-all duration-300 hover:-translate-y-1 hover:border-nexo-lime/50 hover:shadow-[0_0_30px_-10px_rgba(163,230,53,0.5)]">
+    <div className="group flex flex-col overflow-hidden rounded-xl border border-nexo-border bg-nexo-panel transition-all duration-300 hover:border-nexo-lime/50 hover:shadow-[0_0_24px_-10px_rgba(163,230,53,0.5)]">
       {/* Imagen / placeholder */}
       <div className="relative aspect-square overflow-hidden bg-nexo-bg2">
         {showImage ? (
@@ -23,30 +25,38 @@ function ProductCard({ product }) {
           />
         ) : (
           <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${product.accent} opacity-90`}>
-            <BagIcon className="h-16 w-16 text-nexo-bg/80" />
+            <BagIcon className="h-12 w-12 text-nexo-bg/80" />
           </div>
         )}
 
         {product.badge && (
-          <span className="absolute left-3 top-3 rounded-full bg-nexo-lime px-3 py-1 text-xs font-bold text-nexo-bg">
+          <span className="absolute left-2 top-2 rounded bg-nexo-lime px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-nexo-bg">
             {product.badge}
           </span>
         )}
       </div>
 
-      {/* Info */}
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-lg font-bold text-nexo-text">{product.name}</h3>
+      {/* Info (orden tipo ML: precio → tachado+% → nombre) */}
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <span className="text-xl font-extrabold text-nexo-text sm:text-2xl">
+          {product.price}
+        </span>
 
-        <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-2xl font-extrabold text-nexo-lime">{product.price}</span>
-          {product.oldPrice && (
-            <span className="text-sm text-nexo-muted line-through">{product.oldPrice}</span>
-          )}
-        </div>
+        {product.oldPrice && (
+          <div className="mt-0.5 flex items-center gap-2 text-xs sm:text-sm">
+            <span className="text-nexo-muted line-through">{product.oldPrice}</span>
+            {discount && (
+              <span className="font-semibold text-nexo-lime">-{discount}%</span>
+            )}
+          </div>
+        )}
+
+        <h3 className="mt-1.5 line-clamp-2 text-sm text-nexo-muted">
+          {product.name}
+        </h3>
 
         {soon ? (
-          <span className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-nexo-border px-5 py-3 font-semibold text-nexo-muted">
+          <span className="mt-3 inline-flex w-full items-center justify-center rounded-lg border border-nexo-border px-3 py-2 text-sm font-semibold text-nexo-muted">
             Próximamente
           </span>
         ) : (
@@ -54,9 +64,9 @@ function ProductCard({ product }) {
             href={buyLink(product)}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-lime to-nexo-green px-5 py-3 font-semibold text-nexo-bg transition-transform hover:scale-[1.02]"
+            className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-nexo-lime to-nexo-green px-3 py-2 text-sm font-semibold text-nexo-bg transition-transform hover:scale-[1.02]"
           >
-            <WhatsAppIcon className="h-5 w-5" />
+            <WhatsAppIcon className="h-4 w-4" />
             Pedir
           </a>
         )}
@@ -104,8 +114,8 @@ export default function Store() {
           </p>
         </div>
 
-        {/* Vitrina */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Vitrina — 2 columnas en celular (estilo ML), 3 en escritorio */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 lg:gap-6">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}

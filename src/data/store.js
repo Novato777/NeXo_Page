@@ -67,6 +67,18 @@ export const products = [
   },
 ]
 
+// Convierte un precio en texto ("$89.900") a número (89900).
+const toNumber = (s) => Number(String(s).replace(/[^\d]/g, "")) || 0
+
+// % de descuento calculado desde price vs oldPrice. null si no aplica.
+export const discountPercent = (product) => {
+  if (!product.oldPrice) return null
+  const oldN = toNumber(product.oldPrice)
+  const newN = toNumber(product.price)
+  if (!oldN || !newN || newN >= oldN) return null
+  return Math.round((1 - newN / oldN) * 100)
+}
+
 // Abre WhatsApp con el pedido del producto ya escrito.
 export const buyLink = (product) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
