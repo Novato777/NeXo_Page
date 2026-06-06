@@ -1,5 +1,6 @@
 import Logo from "./Logo"
-import { site, whatsappLink } from "../data/site"
+import { whatsappLink } from "../data/site"
+import { BagIcon } from "./Icons"
 
 export default function Hero() {
   return (
@@ -28,13 +29,21 @@ export default function Hero() {
         <div className="my-7 h-px w-56 bg-gradient-to-r from-transparent via-nexo-cyan to-transparent" />
 
         <p className="max-w-3xl text-2xl font-medium text-white [text-shadow:0_0_22px_rgba(34,211,238,0.5)] sm:text-3xl">
-          {site.slogan}
+          Bienvenido a tu{" "}
+          <span className="font-display text-gradient-lime text-3xl font-bold uppercase tracking-tight drop-shadow-[0_0_25px_rgba(163,230,53,0.5)] sm:text-4xl">
+            Tienda Virtual
+          </span>
         </p>
 
         <p className="mt-5 max-w-2xl text-base text-white/85 [text-shadow:0_0_16px_rgba(34,211,238,0.4)] sm:text-lg">
-          Tecnología a tu medida{" "}
-          <span className="font-semibold text-nexo-cyan">y</span> una tienda con
-          productos que te van a encantar.
+          Mira{" "}
+          <strong className="font-semibold text-nexo-lime">nuestros productos</strong>{" "}
+          al mejor precio, con atención directa por WhatsApp. Y como somos una{" "}
+          <strong className="font-semibold text-white">empresa de tecnología</strong>,
+          también creamos{" "}
+          <strong className="font-display font-semibold text-nexo-cyan">páginas web</strong>,{" "}
+          <strong className="font-display font-semibold text-nexo-cyan">sistemas</strong> y{" "}
+          <strong className="font-display font-semibold text-nexo-cyan">automatizaciones</strong>.
         </p>
 
         {/* Un mismo equipo, dos mundos */}
@@ -44,19 +53,20 @@ export default function Hero() {
 
         <div className="mt-5 flex flex-col items-center gap-4">
           <div className="flex flex-col gap-4 sm:flex-row">
-            {/* Mundo Tech (cian) */}
+            {/* Mundo Drop (lima) — CTA principal */}
+            <a
+              href="#tienda"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-lime to-nexo-green px-10 py-4 text-lg font-semibold text-nexo-bg shadow-[0_0_40px_-8px_rgba(163,230,53,0.65)] transition-transform duration-300 hover:scale-105"
+            >
+              <BagIcon className="h-5 w-5" />
+              Ver productos
+            </a>
+            {/* Mundo Tech (cian) — secundario */}
             <a
               href="#servicios"
               className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
             >
               Ver servicios
-            </a>
-            {/* Mundo Drop (lima) */}
-            <a
-              href="#tienda"
-              className="rounded-full border border-nexo-lime/40 bg-nexo-green/20 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(132,204,22,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-lime hover:bg-nexo-green/30"
-            >
-              Ver tienda
             </a>
           </div>
 
