@@ -66,10 +66,10 @@ export default function Hero() {
             </a>
             {/* Mundo Tech (cian) — secundario */}
             <a
-              href="#servicios"
+              href="#portafolio"
               className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
             >
-              Ver servicios
+              Portafolio web
             </a>
           </div>
 
