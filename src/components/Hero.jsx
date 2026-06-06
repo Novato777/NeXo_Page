@@ -32,23 +32,41 @@ export default function Hero() {
         </p>
 
         <p className="mt-5 max-w-2xl text-base text-white/85 [text-shadow:0_0_16px_rgba(34,211,238,0.4)] sm:text-lg">
-          Páginas web · Sistemas a medida · Automatizaciones
+          Tecnología a tu medida{" "}
+          <span className="font-semibold text-nexo-cyan">y</span> una tienda con
+          productos que te van a encantar.
         </p>
 
-        <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+        {/* Un mismo equipo, dos mundos */}
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-nexo-muted">
+          Un mismo equipo · dos mundos
+        </p>
+
+        <div className="mt-5 flex flex-col items-center gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            {/* Mundo Tech (cian) */}
+            <a
+              href="#servicios"
+              className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
+            >
+              Ver servicios
+            </a>
+            {/* Mundo Drop (lima) */}
+            <a
+              href="#tienda"
+              className="rounded-full border border-nexo-lime/40 bg-nexo-green/20 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(132,204,22,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-lime hover:bg-nexo-green/30"
+            >
+              Ver tienda
+            </a>
+          </div>
+
           <a
             href={whatsappLink}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
+            className="text-sm text-white/75 underline-offset-4 transition-colors hover:text-nexo-cyan hover:underline"
           >
-            Hablar por WhatsApp
-          </a>
-          <a
-            href="#portafolio"
-            className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
-          >
-            Ver portafolio
+            o escríbenos por WhatsApp →
           </a>
         </div>
       </div>

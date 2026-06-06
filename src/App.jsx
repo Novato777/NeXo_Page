@@ -6,6 +6,7 @@ import CardNav from "./components/CardNav"
 import Hero from "./components/Hero"
 import Services from "./components/Services"
 import Portfolio from "./components/Portfolio"
+import Store from "./components/Store"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import HeroHyperspeed from "./components/HeroHyperspeed"
@@ -74,6 +75,16 @@ const navItems = [
     ],
   },
   {
+    label: "Tienda",
+    href: "#tienda",
+    bgColor: "#0e2316",
+    textColor: "#e8fce8",
+    links: [
+      { label: "Ver productos", ariaLabel: "Ver la tienda NeXo Drop", href: "#tienda" },
+      { label: "Ofertas", ariaLabel: "Ver ofertas", href: "#tienda" },
+    ],
+  },
+  {
     label: "Contacto",
     href: "#contacto",
     bgColor: "#0b1426",
@@ -110,7 +121,7 @@ export default function App() {
     const getSections = () =>
       Array.from(
         document.querySelectorAll(
-          "#inicio, #servicios, #portafolio, #contacto, footer"
+          "#inicio, #servicios, #portafolio, #tienda, #contacto, footer"
         )
       )
 
@@ -222,6 +233,7 @@ export default function App() {
         {/* Capa superior opaca: Portafolio en adelante SIEMPRE por encima del fondo */}
         <div className="relative z-10 bg-nexo-bg">
           <Portfolio />
+          <Store />
           <Contact />
         </div>
       </main>
