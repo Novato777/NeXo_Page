@@ -24,6 +24,7 @@ import {
 const nav = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
+  { label: "Tienda", href: "#tienda" },
   { label: "Portafolio", href: "#portafolio" },
   { label: "Contacto", href: "#contacto" },
 ]
@@ -49,6 +50,7 @@ const techLogos = [
 ]
 
 const services = [
+  "Tienda virtual",
   "Páginas web",
   "Sistemas a medida",
   "Automatizaciones",
