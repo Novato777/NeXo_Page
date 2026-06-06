@@ -28,22 +28,24 @@ export default function Hero() {
 
         <div className="my-7 h-px w-56 bg-gradient-to-r from-transparent via-nexo-cyan to-transparent" />
 
-        <p className="max-w-3xl text-2xl font-medium text-white [text-shadow:0_0_22px_rgba(34,211,238,0.5)] sm:text-3xl">
-          Bienvenido a tu{" "}
-          <span className="font-display text-gradient-lime text-3xl font-bold uppercase tracking-tight drop-shadow-[0_0_25px_rgba(163,230,53,0.5)] sm:text-4xl">
+        {/* Dos mundos al mismo nivel: tienda + tecnología */}
+        <p className="flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-2xl font-bold uppercase tracking-tight sm:text-3xl">
+          <span className="font-display text-gradient-lime whitespace-nowrap drop-shadow-[0_0_20px_rgba(163,230,53,0.4)]">
             Tienda Virtual
+          </span>
+          <span className="text-xl font-light text-nexo-muted sm:text-2xl">+</span>
+          <span className="font-display text-gradient whitespace-nowrap drop-shadow-[0_0_20px_rgba(34,211,238,0.4)]">
+            Desarrollo Web
           </span>
         </p>
 
         <p className="mt-5 max-w-2xl text-base text-white/85 [text-shadow:0_0_16px_rgba(34,211,238,0.4)] sm:text-lg">
-          Mira{" "}
+          Compra{" "}
           <strong className="font-semibold text-nexo-lime">nuestros productos</strong>{" "}
-          al mejor precio, con atención directa por WhatsApp. Y como somos una{" "}
-          <strong className="font-semibold text-white">empresa de tecnología</strong>,
-          también creamos{" "}
-          <strong className="font-display font-semibold text-nexo-cyan">páginas web</strong>,{" "}
-          <strong className="font-display font-semibold text-nexo-cyan">sistemas</strong> y{" "}
-          <strong className="font-display font-semibold text-nexo-cyan">automatizaciones</strong>.
+          por WhatsApp · también desarrollamos{" "}
+          <strong className="font-semibold text-nexo-cyan">páginas web</strong>,{" "}
+          <strong className="font-semibold text-nexo-cyan">sistemas</strong> y{" "}
+          <strong className="font-semibold text-nexo-cyan">automatizaciones</strong> a tu medida.
         </p>
 
         {/* Un mismo equipo, dos mundos */}
