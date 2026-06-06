@@ -107,7 +107,7 @@ export default function Store() {
           </ScrollReveal>
 
           <p className="mx-auto mt-5 max-w-xl text-lg text-nexo-muted sm:text-xl">
-            Productos seleccionados por nosotros.{" "}
+            Productos de calidad, a precios que te van a encantar.{" "}
             <span className="font-semibold text-nexo-text">
               Pídelos directo por WhatsApp.
             </span>
