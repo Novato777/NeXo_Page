@@ -65,16 +65,6 @@ const navItems = [
     ],
   },
   {
-    label: "Portafolio",
-    href: "#portafolio",
-    bgColor: "#0d1730",
-    textColor: "#e8eefc",
-    links: [
-      { label: "BarberControl", ariaLabel: "Ver BarberControl", href: "#portafolio" },
-      { label: "Ver todos", ariaLabel: "Ver portafolio", href: "#portafolio" },
-    ],
-  },
-  {
     label: "Tienda",
     href: "#tienda",
     bgColor: "#0e2316",
@@ -82,6 +72,16 @@ const navItems = [
     links: [
       { label: "Ver productos", ariaLabel: "Ver la tienda NeXo Drop", href: "#tienda" },
       { label: "Ofertas", ariaLabel: "Ver ofertas", href: "#tienda" },
+    ],
+  },
+  {
+    label: "Portafolio",
+    href: "#portafolio",
+    bgColor: "#0d1730",
+    textColor: "#e8eefc",
+    links: [
+      { label: "BarberControl", ariaLabel: "Ver BarberControl", href: "#portafolio" },
+      { label: "Ver todos", ariaLabel: "Ver portafolio", href: "#portafolio" },
     ],
   },
   {
@@ -121,7 +121,7 @@ export default function App() {
     const getSections = () =>
       Array.from(
         document.querySelectorAll(
-          "#inicio, #servicios, #portafolio, #tienda, #contacto, footer"
+          "#inicio, #servicios, #tienda, #portafolio, #contacto, footer"
         )
       )
 
@@ -232,8 +232,8 @@ export default function App() {
         </div>
         {/* Capa superior opaca: Portafolio en adelante SIEMPRE por encima del fondo */}
         <div className="relative z-10 bg-nexo-bg">
-          <Portfolio />
           <Store />
+          <Portfolio />
           <Contact />
         </div>
       </main>
