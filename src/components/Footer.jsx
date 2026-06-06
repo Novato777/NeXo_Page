@@ -23,8 +23,8 @@ import {
 
 const nav = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Tienda", href: "#tienda" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Portafolio", href: "#portafolio" },
   { label: "Contacto", href: "#contacto" },
 ]

@@ -7,6 +7,7 @@ import Hero from "./components/Hero"
 import Services from "./components/Services"
 import Portfolio from "./components/Portfolio"
 import Store from "./components/Store"
+import StoreBanner from "./components/StoreBanner"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import HeroHyperspeed from "./components/HeroHyperspeed"
@@ -54,6 +55,16 @@ const hyperspeedOptions = {
 
 const navItems = [
   {
+    label: "Tienda",
+    href: "#tienda",
+    bgColor: "#0e2316",
+    textColor: "#e8fce8",
+    links: [
+      { label: "Ver productos", ariaLabel: "Ver la tienda NeXo Drop", href: "#tienda" },
+      { label: "Ofertas", ariaLabel: "Ver ofertas", href: "#tienda" },
+    ],
+  },
+  {
     label: "Servicios",
     href: "#servicios",
     bgColor: "#0f1a30",
@@ -62,16 +73,6 @@ const navItems = [
       { label: "Páginas web", ariaLabel: "Páginas web", href: "#servicios" },
       { label: "Sistemas a medida", ariaLabel: "Sistemas a medida", href: "#servicios" },
       { label: "Automatizaciones", ariaLabel: "Automatizaciones", href: "#servicios" },
-    ],
-  },
-  {
-    label: "Tienda",
-    href: "#tienda",
-    bgColor: "#0e2316",
-    textColor: "#e8fce8",
-    links: [
-      { label: "Ver productos", ariaLabel: "Ver la tienda NeXo Drop", href: "#tienda" },
-      { label: "Ofertas", ariaLabel: "Ver ofertas", href: "#tienda" },
     ],
   },
   {
@@ -121,7 +122,7 @@ export default function App() {
     const getSections = () =>
       Array.from(
         document.querySelectorAll(
-          "#inicio, #servicios, #tienda, #portafolio, #contacto, footer"
+          "#inicio, #tienda, #servicios, #portafolio, #contacto, footer"
         )
       )
 
@@ -228,11 +229,12 @@ export default function App() {
         <div className="top-stage">
           <HeroHyperspeed options={hyperspeedOptions} />
           <Hero />
-          <Services />
         </div>
-        {/* Capa superior opaca: Portafolio en adelante SIEMPRE por encima del fondo */}
+        {/* Capa superior opaca: de la tienda en adelante SIEMPRE por encima del fondo */}
         <div className="relative z-10 bg-nexo-bg">
+          <StoreBanner />
           <Store />
+          <Services />
           <Portfolio />
           <Contact />
         </div>
