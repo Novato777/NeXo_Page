@@ -170,9 +170,10 @@ function Header() {
         Nuestro Portafolio
       </ScrollReveal>
       <p className="mt-7 max-w-md text-xl leading-relaxed text-nexo-muted sm:text-2xl">
-        Proyectos reales{" "}
-        <span className="font-semibold text-nexo-text">funcionando</span>. Usa las
-        flechas para navegar y haz clic para verlos en vivo.
+        Sistemas reales{" "}
+        <span className="font-semibold text-nexo-text">funcionando</span> y{" "}
+        <span className="font-semibold text-nexo-cyan">disponibles para tu negocio</span>.
+        Cada uno se adapta a tu medida — explóralos y míralos en vivo.
       </p>
       <a
         href={projects[0].link}
