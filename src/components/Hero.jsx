@@ -42,10 +42,11 @@ export default function Hero() {
         <p className="mt-5 max-w-2xl text-base text-white/85 [text-shadow:0_0_16px_rgba(34,211,238,0.4)] sm:text-lg">
           Compra{" "}
           <strong className="font-semibold text-nexo-lime">nuestros productos</strong>{" "}
-          por WhatsApp · también desarrollamos{" "}
+          por WhatsApp. Diseñamos{" "}
           <strong className="font-semibold text-nexo-cyan">páginas web</strong>,{" "}
-          <strong className="font-semibold text-nexo-cyan">sistemas</strong> y{" "}
-          <strong className="font-semibold text-nexo-cyan">automatizaciones</strong> a tu medida.
+          <strong className="font-semibold text-nexo-cyan">sistemas a medida</strong> y{" "}
+          <strong className="font-semibold text-nexo-cyan">automatizaciones</strong> para
+          impulsar tu negocio.
         </p>
 
         {/* Un mismo equipo, dos mundos */}
