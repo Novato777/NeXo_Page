@@ -1,22 +1,31 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react"
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react"
 
 // Carga diferida: three.js/postprocessing salen del bundle inicial (code-split)
 const Hyperspeed = lazy(() => import("./Hyperspeed"))
 
-// Capa de fondo Hyperspeed: fija (sticky) sobre Hero + Servicios,
-// nítida arriba y con blur fuerte al hacer scroll. Activa también en móvil,
-// salvo que el usuario prefiera menos movimiento (accesibilidad).
+// Perfil "lite" para móvil: menos objetos en escena + menor resolución de
+// render, para que sea fluido también en iOS sin cambiar el look.
+const MOBILE_OVERRIDES = {
+  totalSideLightSticks: 10, // antes 20
+  lightPairsPerRoadWay: 18, // antes 40
+  maxPixelRatio: 1, // antes hasta 1.5 -> ~2x menos trabajo de GPU
+}
+
+// Capa de fondo Hyperspeed: fija (sticky) sobre el Hero. Activa también en
+// móvil con perfil optimizado, salvo "reducir movimiento" (accesibilidad).
 export default function HeroHyperspeed({ options }) {
   const [enabled, setEnabled] = useState(false)
+  const [mobile, setMobile] = useState(false)
+  const [ready, setReady] = useState(false)
   const layerRef = useRef(null)
 
   useEffect(() => {
-    // Desactivado en móvil (rendimiento: Three.js ahoga Safari iOS y tarda en
-    // cargar) y si el usuario prefiere menos movimiento (accesibilidad).
-    // Al quedar deshabilitado, el chunk de Three.js ni siquiera se descarga.
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)")
     const mqMobile = window.matchMedia("(max-width: 768px)")
-    const apply = () => setEnabled(!mqReduce.matches && !mqMobile.matches)
+    const apply = () => {
+      setMobile(mqMobile.matches)
+      setEnabled(!mqReduce.matches)
+    }
     apply()
     mqReduce.addEventListener("change", apply)
     mqMobile.addEventListener("change", apply)
@@ -25,6 +34,14 @@ export default function HeroHyperspeed({ options }) {
       mqMobile.removeEventListener("change", apply)
     }
   }, [])
+
+  // Difiere el arranque del WebGL para que el contenido pinte primero
+  // (carga percibida más rápida, sobre todo en iOS).
+  useEffect(() => {
+    if (!enabled) return
+    const t = window.setTimeout(() => setReady(true), 250)
+    return () => window.clearTimeout(t)
+  }, [enabled])
 
   // Difuminado progresivo según el scroll (0 → 14px en ~1 viewport)
   useEffect(() => {
@@ -49,13 +66,24 @@ export default function HeroHyperspeed({ options }) {
     }
   }, [enabled])
 
+  // Referencia ESTABLE de opciones (si cambia, Hyperspeed recrea toda la escena).
+  const effectOptions = useMemo(
+    () =>
+      mobile
+        ? { ...options, ...MOBILE_OVERRIDES }
+        : { ...options, maxPixelRatio: 1.5 },
+    [mobile, options]
+  )
+
   if (!enabled) return null
 
   return (
     <div ref={layerRef} className="hyperspeed-layer" aria-hidden="true">
-      <Suspense fallback={null}>
-        <Hyperspeed effectOptions={options} />
-      </Suspense>
+      {ready && (
+        <Suspense fallback={null}>
+          <Hyperspeed effectOptions={effectOptions} />
+        </Suspense>
+      )}
       <div className="hyperspeed-fade" />
     </div>
   )

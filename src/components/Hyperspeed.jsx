@@ -361,8 +361,9 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           alpha: true
         });
         this.renderer.setSize(initW, initH, false);
-        // Tope de pixel ratio: en pantallas retina/móvil evita renderizar 2x-3x (rendimiento)
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        // Tope de pixel ratio: en pantallas retina/móvil evita renderizar 2x-3x
+        // (rendimiento). En móvil llega como 1 vía options.maxPixelRatio.
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, options.maxPixelRatio || 1.5));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
