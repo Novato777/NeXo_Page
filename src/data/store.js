@@ -13,12 +13,31 @@ import { site } from "./site"
 export const products = [
   {
     id: "p1",
-    name: "Producto estrella",
+    slug: "audifonos-xiaomi-redmi-airdots",
+    name: "Audífonos Xiaomi Redmi AirDots",
     price: "$59.900",
     oldPrice: "$89.900",
     image: "",
     badge: "Más vendido",
     accent: "from-nexo-lime to-nexo-green",
+    // Contenido de la landing personalizada -> /producto/<slug>
+    landing: {
+      tagline: "Sonido potente y sin cables, listos para tu día a día.",
+      description:
+        "Disfruta tu música, podcasts y videos con un sonido limpio y responde llamadas con manos libres. Inalámbricos, cómodos y compatibles con cualquier celular: solo conéctalos y listo.",
+      benefits: [
+        "Conexión Bluetooth estable y rápida",
+        "Manos libres para tus llamadas",
+        "Batería que te acompaña todo el día",
+        "Compatibles con cualquier celular",
+        "Diseño cómodo y liviano",
+      ],
+      // Imágenes extra del producto (galería). Guarda en public/img/ y referencia
+      // como "/img/airdots-1.png". Vacío = se muestra solo la imagen principal.
+      gallery: [],
+      // Video del producto (mp4 en public/img/ o un .mp4 externo). Vacío = sin video.
+      video: "",
+    },
   },
   {
     id: "p2",
@@ -66,6 +85,10 @@ export const products = [
     accent: "from-nexo-green to-nexo-lime",
   },
 ]
+
+// Busca un producto por su slug (para la landing /producto/<slug>).
+export const getProductBySlug = (slug) =>
+  products.find((p) => p.slug === slug) || null
 
 // Convierte un precio en texto ("$89.900") a número (89900).
 const toNumber = (s) => Number(String(s).replace(/[^\d]/g, "")) || 0

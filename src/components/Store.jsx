@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import ScrollReveal from "./ScrollReveal"
 import { products, buyLink, discountPercent } from "../data/store"
 import { whatsappLink } from "../data/site"
@@ -84,6 +85,13 @@ function ProductCard({ product }) {
           <span className="mt-3 inline-flex w-full items-center justify-center rounded-lg border border-nexo-border px-3 py-2 text-sm font-semibold text-nexo-muted">
             Próximamente
           </span>
+        ) : product.slug ? (
+          <Link
+            to={`/producto/${product.slug}`}
+            className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-nexo-lime to-nexo-green px-3 py-2 text-sm font-semibold text-nexo-bg transition-transform hover:scale-[1.02]"
+          >
+            Ver producto
+          </Link>
         ) : (
           <a
             href={buyLink(product)}
