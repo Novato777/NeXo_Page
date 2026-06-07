@@ -189,11 +189,21 @@ function Header() {
 
 export default function Portfolio() {
   const [isMobile, setIsMobile] = useState(false)
+  // Pantallas grandes: agrandamos el carrusel para que la sección no se vea vacía.
+  const [isLarge, setIsLarge] = useState(false)
   const swapRef = useRef(null)
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)")
     const apply = () => setIsMobile(mq.matches)
+    apply()
+    mq.addEventListener("change", apply)
+    return () => mq.removeEventListener("change", apply)
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1440px)")
+    const apply = () => setIsLarge(mq.matches)
     apply()
     mq.addEventListener("change", apply)
     return () => mq.removeEventListener("change", apply)
@@ -220,13 +230,14 @@ export default function Portfolio() {
           // ===== Escritorio: texto + Card Swap =====
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Header />
-            <div className="relative h-[440px]">
+            <div className={`relative ${isLarge ? "h-[600px]" : "h-[440px]"}`}>
               <CardSwap
+                key={isLarge ? "lg" : "md"}
                 ref={swapRef}
-                width={420}
-                height={300}
-                cardDistance={50}
-                verticalDistance={55}
+                width={isLarge ? 560 : 420}
+                height={isLarge ? 390 : 300}
+                cardDistance={isLarge ? 62 : 50}
+                verticalDistance={isLarge ? 70 : 55}
                 delay={4000}
                 onCardClick={openProject}
               >
