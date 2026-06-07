@@ -10,6 +10,7 @@ import Store from "../components/Store"
 import Contact from "../components/Contact"
 import Footer from "../components/Footer"
 import HeroHyperspeed from "../components/HeroHyperspeed"
+import ErrorBoundary from "../components/ErrorBoundary"
 import { site, whatsappLink } from "../data/site"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -234,7 +235,11 @@ export default function Home() {
       <main>
         {/* Escenario superior: Hero sobre el fondo Hyperspeed */}
         <div className="top-stage">
-          <HeroHyperspeed options={hyperspeedOptions} />
+          {/* Si WebGL falla en iOS (Lockdown Mode, sin contexto), la página
+              sigue cargando sin el fondo animado en vez de quedar en blanco. */}
+          <ErrorBoundary fallback={null}>
+            <HeroHyperspeed options={hyperspeedOptions} />
+          </ErrorBoundary>
           <Hero />
         </div>
         {/* Capa superior opaca: de la tienda en adelante SIEMPRE por encima del fondo */}
