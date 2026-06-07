@@ -382,6 +382,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           fogFar: { value: fog.far }
         };
         this.clock = new THREE.Clock();
+        this.maxFPS = options.maxFPS || 0; // 0 = sin tope (PC/Android)
         this.assets = {};
         this.disposed = false;
 
@@ -642,6 +643,16 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
 
       tick() {
         if (this.disposed) return;
+
+        // Tope de FPS (iOS/móvil): saltar frames para ahorrar GPU/batería.
+        if (this.maxFPS) {
+          const now = performance.now();
+          if (this._lastFrame && now - this._lastFrame < 1000 / this.maxFPS - 1) {
+            requestAnimationFrame(this.tick);
+            return;
+          }
+          this._lastFrame = now;
+        }
 
         if (!this.hasValidSize) {
           const w = this.container.offsetWidth;
