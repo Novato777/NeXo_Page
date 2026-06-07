@@ -2,7 +2,7 @@ import { useState } from "react"
 import ScrollReveal from "./ScrollReveal"
 import { products, buyLink, discountPercent } from "../data/store"
 import { whatsappLink } from "../data/site"
-import { BagIcon, WhatsAppIcon, TruckIcon, HeadphonesIcon } from "./Icons"
+import { BagIcon, WhatsAppIcon, TruckIcon, HeadphonesIcon, ShieldCheckIcon } from "./Icons"
 
 // Sellos de confianza que se muestran debajo de las cards.
 const trust = [
@@ -15,6 +15,11 @@ const trust = [
     icon: TruckIcon,
     title: "Envíos a todo el país",
     sub: "Recíbelo donde estés",
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: "Compras seguras",
+    sub: "Tu compra siempre protegida",
   },
   {
     icon: HeadphonesIcon,
@@ -142,7 +147,7 @@ export default function Store() {
         </div>
 
         {/* Sellos de confianza */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {trust.map((t) => {
             const Icon = t.icon
             return (
