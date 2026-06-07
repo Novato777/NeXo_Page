@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { getProductBySlug, buyLink, discountPercent } from "../data/store"
 import Footer from "../components/Footer"
@@ -11,6 +11,8 @@ import {
   ShieldCheckIcon,
   HeadphonesIcon,
   ChevronLeftIcon,
+  ChevronRightIcon,
+  PlayIcon,
 } from "../components/Icons"
 
 const trust = [
@@ -39,51 +41,134 @@ const info = [
   },
 ]
 
-function Media({ product }) {
+// Galería deslizable tipo catálogo (varias fotos + video opcional + miniaturas).
+function MediaGallery({ product }) {
   const L = product.landing || {}
-  const [imgError, setImgError] = useState(false)
-  const showImage = product.image && !imgError
+  const slides = useMemo(() => {
+    const arr = []
+    if (L.video) arr.push({ type: "video", src: L.video })
+    ;[product.image, ...(L.gallery || [])]
+      .filter(Boolean)
+      .forEach((src) => arr.push({ type: "image", src }))
+    return arr
+  }, [product.image, L.video, L.gallery])
+
+  const trackRef = useRef(null)
+  const [active, setActive] = useState(0)
+
+  const scrollToIndex = (i) => {
+    const track = trackRef.current
+    if (!track) return
+    const clamped = Math.max(0, Math.min(i, slides.length - 1))
+    track.scrollTo({ left: clamped * track.clientWidth, behavior: "smooth" })
+  }
+
+  const onScroll = () => {
+    const track = trackRef.current
+    if (!track) return
+    setActive(Math.round(track.scrollLeft / track.clientWidth))
+  }
+
+  // Sin fotos ni video -> placeholder
+  if (slides.length === 0) {
+    return (
+      <div className="lg:sticky lg:top-24">
+        <div className={`relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-nexo-border bg-gradient-to-br ${product.accent}`}>
+          <BagIcon className="h-24 w-24 text-nexo-bg/80" />
+          {product.badge && (
+            <span className="absolute left-3 top-3 rounded-full bg-nexo-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-nexo-bg">
+              {product.badge}
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  const multiple = slides.length > 1
 
   return (
     <div className="lg:sticky lg:top-24">
-      <div className="relative aspect-square overflow-hidden rounded-2xl border border-nexo-border bg-nexo-panel">
-        {L.video ? (
-          <video
-            src={L.video}
-            controls
-            playsInline
-            poster={showImage ? product.image : undefined}
-            className="h-full w-full object-cover"
-          />
-        ) : showImage ? (
-          <img
-            src={product.image}
-            alt={product.name}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${product.accent}`}>
-            <BagIcon className="h-24 w-24 text-nexo-bg/80" />
-          </div>
-        )}
+      <div className="relative">
+        {/* Pista deslizable */}
+        <div
+          ref={trackRef}
+          onScroll={onScroll}
+          className="no-scrollbar flex aspect-square w-full snap-x snap-mandatory overflow-x-auto rounded-2xl border border-nexo-border bg-nexo-panel"
+        >
+          {slides.map((s, i) =>
+            s.type === "video" ? (
+              <video
+                key={i}
+                src={s.src}
+                controls
+                playsInline
+                className="h-full w-full shrink-0 snap-center object-cover"
+              />
+            ) : (
+              <img
+                key={i}
+                src={s.src}
+                alt={`${product.name} ${i + 1}`}
+                className="h-full w-full shrink-0 snap-center object-cover"
+              />
+            )
+          )}
+        </div>
 
         {product.badge && (
-          <span className="absolute left-3 top-3 rounded-full bg-nexo-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-nexo-bg">
+          <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-nexo-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-nexo-bg">
             {product.badge}
           </span>
         )}
+
+        {multiple && (
+          <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-nexo-bg/70 px-2.5 py-1 text-xs font-semibold text-nexo-text backdrop-blur">
+            {active + 1}/{slides.length}
+          </span>
+        )}
+
+        {/* Flechas (escritorio) */}
+        {multiple && (
+          <>
+            <button
+              onClick={() => scrollToIndex(active - 1)}
+              aria-label="Foto anterior"
+              className="absolute left-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-nexo-border bg-nexo-bg/70 text-nexo-text backdrop-blur transition-colors hover:border-nexo-cyan hover:text-nexo-cyan sm:flex"
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              onClick={() => scrollToIndex(active + 1)}
+              aria-label="Foto siguiente"
+              className="absolute right-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-nexo-border bg-nexo-bg/70 text-nexo-text backdrop-blur transition-colors hover:border-nexo-cyan hover:text-nexo-cyan sm:flex"
+            >
+              <ChevronRightIcon />
+            </button>
+          </>
+        )}
       </div>
 
-      {/* Galería */}
-      {L.gallery?.length > 0 && (
-        <div className="mt-3 grid grid-cols-4 gap-3">
-          {L.gallery.map((src, i) => (
-            <img
+      {/* Miniaturas */}
+      {multiple && (
+        <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">
+          {slides.map((s, i) => (
+            <button
               key={i}
-              src={src}
-              alt={`${product.name} ${i + 1}`}
-              className="aspect-square w-full rounded-xl border border-nexo-border object-cover"
-            />
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Ver foto ${i + 1}`}
+              className={`h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition-colors ${
+                i === active ? "border-nexo-lime" : "border-nexo-border"
+              }`}
+            >
+              {s.type === "video" ? (
+                <span className="flex h-full w-full items-center justify-center bg-nexo-bg2 text-nexo-lime">
+                  <PlayIcon className="h-5 w-5" />
+                </span>
+              ) : (
+                <img src={s.src} alt="" className="h-full w-full object-cover" />
+              )}
+            </button>
           ))}
         </div>
       )}
@@ -121,27 +206,39 @@ export default function ProductLanding() {
     <div className="min-h-screen bg-nexo-bg text-nexo-text">
       {/* Barra superior */}
       <header className="sticky top-0 z-40 border-b border-nexo-border bg-nexo-bg/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <Link to="/" className="flex items-center gap-2" aria-label="NeXo inicio">
-            <Logo size={28} />
-            <span className="text-xl font-bold">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
+          <Link to="/" className="flex items-center gap-2.5" aria-label="NeXo inicio">
+            <Logo size={34} />
+            <span className="text-2xl font-bold tracking-tight">
               Ne<span className="text-gradient">X</span>o
             </span>
           </Link>
-          <a
-            href="/#tienda"
-            className="inline-flex items-center gap-1 text-sm text-nexo-muted transition-colors hover:text-nexo-cyan"
-          >
-            <ChevronLeftIcon className="h-4 w-4" />
-            Volver a la tienda
-          </a>
+
+          <div className="flex items-center gap-3 sm:gap-5">
+            <a
+              href="/#tienda"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-nexo-muted transition-colors hover:text-nexo-cyan sm:text-base"
+            >
+              <ChevronLeftIcon className="h-4 w-4" />
+              Volver a la tienda
+            </a>
+            <a
+              href={buyLink(product)}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-nexo-lime to-nexo-green px-5 py-2.5 text-sm font-semibold text-nexo-bg transition-transform hover:scale-105 sm:inline-flex"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Pedir
+            </a>
+          </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-6 pb-28 pt-8 lg:pb-16">
-        {/* Encabezado: media + info */}
+        {/* Encabezado: galería + info */}
         <div className="grid gap-10 lg:grid-cols-2">
-          <Media product={product} />
+          <MediaGallery product={product} />
 
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
@@ -180,7 +277,7 @@ export default function ProductLanding() {
             </a>
 
             {/* Sellos de confianza */}
-            <div className="mt-7 grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-2">
+            <div className="mt-7 grid grid-cols-2 gap-x-5 gap-y-3">
               {trust.map((t) => {
                 const Icon = t.icon
                 return (
@@ -196,23 +293,20 @@ export default function ProductLanding() {
           </div>
         </div>
 
-        {/* Beneficios */}
+        {/* Beneficios (lista limpia, sin cara de botón) */}
         {L.benefits?.length > 0 && (
           <section className="mt-16">
             <h2 className="text-2xl font-bold sm:text-3xl">
               ¿Por qué te va a{" "}
               <span className="text-gradient-lime">encantar</span>?
             </h2>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2">
               {L.benefits.map((b) => (
-                <li
-                  key={b}
-                  className="flex items-start gap-3 rounded-xl border border-nexo-border bg-nexo-panel/50 p-4"
-                >
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-nexo-lime/15 text-nexo-lime">
+                <li key={b} className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-nexo-lime to-nexo-green text-nexo-bg">
                     <CheckIcon className="h-4 w-4" />
                   </span>
-                  <span className="text-nexo-text">{b}</span>
+                  <span className="text-lg text-nexo-text">{b}</span>
                 </li>
               ))}
             </ul>
@@ -251,8 +345,7 @@ export default function ProductLanding() {
         {/* CTA final */}
         <section className="mt-16 rounded-2xl border border-nexo-lime/30 bg-gradient-to-r from-nexo-green/10 to-nexo-lime/10 p-8 text-center">
           <p className="text-2xl font-bold sm:text-3xl">
-            Llévate el tuyo{" "}
-            <span className="text-gradient-lime">hoy</span>
+            Llévate el tuyo <span className="text-gradient-lime">hoy</span>
           </p>
           <p className="mx-auto mt-2 max-w-xl text-nexo-muted">
             Escríbenos y te atendemos al instante. Compra fácil, rápido y seguro.

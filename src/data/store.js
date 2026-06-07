@@ -17,7 +17,8 @@ export const products = [
     name: "Audífonos Xiaomi Redmi AirDots",
     price: "$59.900",
     oldPrice: "$89.900",
-    image: "",
+    // Imagen principal (también se ve en la card de la tienda).
+    image: "/img/demo-1.png",
     badge: "Más vendido",
     accent: "from-nexo-lime to-nexo-green",
     // Contenido de la landing personalizada -> /producto/<slug>
@@ -32,10 +33,10 @@ export const products = [
         "Compatibles con cualquier celular",
         "Diseño cómodo y liviano",
       ],
-      // Imágenes extra del producto (galería). Guarda en public/img/ y referencia
-      // como "/img/airdots-1.png". Vacío = se muestra solo la imagen principal.
-      gallery: [],
-      // Video del producto (mp4 en public/img/ o un .mp4 externo). Vacío = sin video.
+      // Fotos extra del producto (galería deslizable). Guarda en public/img/ y
+      // referencia como "/img/airdots-2.png". Estas son de ejemplo.
+      gallery: ["/img/demo-2.png", "/img/demo-3.png"],
+      // Video del producto (mp4 en public/img/ o externo). Vacío = sin video.
       video: "",
     },
   },
