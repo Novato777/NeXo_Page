@@ -6,16 +6,16 @@ import "./HeroBackdropIOS.css"
 const COLORS_RIGHT = ["#22d3ee", "#3b82f6", "#67e8f9"]
 const COLORS_LEFT = ["#7c3aed", "#6d28d9", "#818cf8"]
 
-const STREAKS = Array.from({ length: 26 }, (_, i) => {
+const STREAKS = Array.from({ length: 50 }, (_, i) => {
   const right = i % 2 === 0
   const palette = right ? COLORS_RIGHT : COLORS_LEFT
-  const base = right ? 52 : 6 // carril derecho / izquierdo
+  const base = right ? 50 : 4 // carril derecho / izquierdo
   return {
-    left: base + ((i * 17) % 40),
-    width: 3 + ((i * 5) % 5), // 3–7px
+    left: base + ((i * 17) % 45),
+    width: 4 + ((i * 5) % 6), // 4–9px
     color: palette[i % palette.length],
-    duration: 2 + ((i * 13) % 20) / 10, // 2.0–3.9s
-    delay: -(((i * 23) % 40) / 10), // arranque desfasado (negativo)
+    duration: 1.8 + ((i * 13) % 22) / 10, // 1.8–3.9s
+    delay: -(((i * 23) % 42) / 10), // arranque desfasado (negativo)
   }
 })
 

@@ -18,10 +18,10 @@
   position: absolute;
   left: 50%;
   top: 42%;
-  width: 72%;
-  height: 26%;
+  width: 82%;
+  height: 28%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(99, 180, 255, 0.35), transparent 72%);
+  background: radial-gradient(closest-side, rgba(99, 180, 255, 0.5), transparent 72%);
   filter: blur(18px);
   pointer-events: none;
 }
@@ -64,10 +64,10 @@
 .hs-ios__streak {
   position: absolute;
   top: 0;
-  height: 20%;
+  height: 24%;
   border-radius: 999px;
-  background: linear-gradient(to bottom, transparent, var(--c));
-  box-shadow: 0 0 9px 1px var(--c);
+  background: linear-gradient(to bottom, transparent, var(--c) 55%, #f0feff);
+  box-shadow: 0 0 18px 2px var(--c), 0 0 5px 0 rgba(255, 255, 255, 0.9);
   opacity: 0;
   will-change: transform, opacity;
   animation-name: hs-travel;
