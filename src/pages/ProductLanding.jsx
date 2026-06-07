@@ -190,12 +190,13 @@ export default function ProductLanding() {
       <div className="flex min-h-dvh flex-col items-center justify-center gap-5 bg-nexo-bg px-6 text-center text-nexo-text">
         <BagIcon className="h-14 w-14 text-nexo-muted" />
         <h1 className="text-2xl font-bold">Producto no encontrado</h1>
-        <a
-          href="/#tienda"
+        <Link
+          to="/"
+          onClick={() => sessionStorage.setItem("nexo-scroll", "tienda")}
           className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-nexo-lime to-nexo-green px-6 py-3 font-semibold text-nexo-bg"
         >
           Volver a la tienda
-        </a>
+        </Link>
       </div>
     )
   }
@@ -216,13 +217,14 @@ export default function ProductLanding() {
           </Link>
 
           <div className="flex items-center gap-3 sm:gap-5">
-            <a
-              href="/#tienda"
+            <Link
+              to="/"
+              onClick={() => sessionStorage.setItem("nexo-scroll", "tienda")}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-nexo-muted transition-colors hover:text-nexo-cyan sm:text-base"
             >
               <ChevronLeftIcon className="h-4 w-4" />
               Volver a la tienda
-            </a>
+            </Link>
             <a
               href={buyLink(product)}
               target="_blank"

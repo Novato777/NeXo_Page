@@ -115,7 +115,7 @@ export default function Store() {
       className="relative flex min-h-dvh flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
     >
       {/* Resplandor de fondo (verde/lima) */}
-      <div className="pointer-events-none absolute right-1/4 top-0 h-[420px] w-[600px] translate-x-1/2 rounded-full bg-nexo-green/10 blur-[130px]" />
+      <div className="pointer-events-none absolute right-1/4 top-0 h-[420px] w-[600px] translate-x-1/2 rounded-full bg-nexo-green/10 blur-[60px] sm:blur-[130px]" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
         {/* Encabezado */}

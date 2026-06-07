@@ -1,101 +1,50 @@
-/* ===== Fondo "Hyperspeed" en CSS para iOS (sin WebGL) =====
-   Carretera en perspectiva 3D con estelas de luz que viajan hacia el
-   espectador, imitando el fondo WebGL. Liviano y fluido en Safari iOS. */
+/* ===== Fondo del Hero para iOS — versión LIVIANA =====
+   Solo degradados radiales que laten (animan opacidad). Nada de filter:blur,
+   box-shadow, will-change ni transform-3d -> Safari iOS lo pinta sin esfuerzo. */
 
 .hs-ios {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background:
-    radial-gradient(85% 55% at 50% 40%, rgba(34, 211, 238, 0.1), transparent 60%),
-    radial-gradient(120% 90% at 50% 100%, #060912 35%, #02040a 100%), #02040a;
-  perspective: 360px;
-  perspective-origin: 50% 42%;
+  background: linear-gradient(180deg, #060912 0%, #04060f 60%, #02040a 100%);
 }
 
-/* Resplandor del horizonte (punto de fuga) */
-.hs-ios__horizon {
+.hs-ios__glow {
   position: absolute;
-  left: 50%;
-  top: 42%;
-  width: 82%;
-  height: 28%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(99, 180, 255, 0.5), transparent 72%);
-  filter: blur(18px);
-  pointer-events: none;
+  border-radius: 50%;
+  /* El degradado radial ya es suave: no necesita filter blur (barato en iOS). */
 }
 
-/* El "piso" inclinado en perspectiva */
-.hs-ios__road {
-  position: absolute;
-  left: 50%;
-  top: 42%;
-  width: 260%;
-  height: 360%;
-  transform: translateX(-50%) rotateX(80deg);
-  transform-origin: 50% 0%;
-  transform-style: preserve-3d;
+.hs-ios__glow--cyan {
+  left: 5%;
+  top: 12%;
+  width: 90%;
+  height: 55%;
+  background: radial-gradient(closest-side, rgba(34, 211, 238, 0.2), transparent 70%);
+  animation: hs-pulse 6s ease-in-out infinite;
 }
 
-/* Bordes de la carretera (convergen hacia el horizonte por la perspectiva) */
-.hs-ios__road::before,
-.hs-ios__road::after {
-  content: "";
-  position: absolute;
-  top: 0;
+.hs-ios__glow--violet {
+  left: 12%;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(34, 211, 238, 0.05) 40%,
-    rgba(34, 211, 238, 0.35) 100%
-  );
-}
-.hs-ios__road::before {
-  left: 34%;
-}
-.hs-ios__road::after {
-  right: 34%;
+  width: 80%;
+  height: 52%;
+  background: radial-gradient(closest-side, rgba(124, 58, 237, 0.18), transparent 70%);
+  animation: hs-pulse 7.5s ease-in-out infinite reverse;
 }
 
-/* Cada estela de luz (trail de los "carros") */
-.hs-ios__streak {
-  position: absolute;
-  top: 0;
-  height: 24%;
-  border-radius: 999px;
-  background: linear-gradient(to bottom, transparent, var(--c) 55%, #f0feff);
-  box-shadow: 0 0 18px 2px var(--c), 0 0 5px 0 rgba(255, 255, 255, 0.9);
-  opacity: 0;
-  will-change: transform, opacity;
-  animation-name: hs-travel;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes hs-travel {
-  0% {
-    transform: translateY(0) scaleY(0.5);
-    opacity: 0;
+@keyframes hs-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
   }
-  8% {
-    opacity: 0.95;
-  }
-  85% {
+  50% {
     opacity: 1;
   }
-  100% {
-    transform: translateY(380%) scaleY(1.4);
-    opacity: 0;
-  }
 }
 
-/* Accesibilidad: sin movimiento, queda como una carretera estática y tenue */
 @media (prefers-reduced-motion: reduce) {
-  .hs-ios__streak {
+  .hs-ios__glow {
     animation: none;
-    opacity: 0.22;
   }
 }

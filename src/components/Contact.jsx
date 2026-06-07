@@ -82,8 +82,8 @@ export default function Contact() {
       )}
 
       {/* Resplandores de fondo */}
-      <div className="pointer-events-none absolute left-1/4 top-0 h-[420px] w-[600px] -translate-x-1/2 rounded-full bg-nexo-blue/10 blur-[130px]" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-[360px] w-[520px] translate-x-1/4 rounded-full bg-nexo-cyan/10 blur-[130px]" />
+      <div className="pointer-events-none absolute left-1/4 top-0 h-[420px] w-[600px] -translate-x-1/2 rounded-full bg-nexo-blue/10 blur-[60px] sm:blur-[130px]" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-[360px] w-[520px] translate-x-1/4 rounded-full bg-nexo-cyan/10 blur-[60px] sm:blur-[130px]" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         {/* Encabezado */}

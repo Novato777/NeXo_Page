@@ -101,13 +101,6 @@ const navItems = [
 export default function Home() {
   // Smooth scroll (Lenis) integrado con GSAP/ScrollTrigger (para el ScrollReveal)
   useEffect(() => {
-    // iOS/Safari restaura el scroll a donde estaba: lo desactivamos para que
-    // la página SIEMPRE abra en el Hero (salvo que el enlace traiga #seccion).
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual"
-    }
-    if (!window.location.hash) window.scrollTo(0, 0)
-
     const lenis = new Lenis({
       duration: 1.0,
       smoothWheel: false, // la rueda la controlamos nosotros (1 sección por scroll)
@@ -120,12 +113,17 @@ export default function Home() {
     gsap.ticker.add(onTick)
     gsap.ticker.lagSmoothing(0)
 
-    // Si llegamos con un hash (ej. /#tienda desde una landing), saltamos ahí.
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash)
+    // Prioriza el Hero. Solo saltamos a una sección si hubo intención explícita
+    // (p. ej. "Volver a la tienda" desde una landing), guardada en sessionStorage.
+    const intent = sessionStorage.getItem("nexo-scroll")
+    sessionStorage.removeItem("nexo-scroll")
+    if (intent) {
+      const target = document.getElementById(intent)
       if (target) {
-        window.setTimeout(() => lenis.scrollTo(target, { immediate: true }), 60)
+        window.setTimeout(() => lenis.scrollTo(target, { immediate: true }), 80)
       }
+    } else {
+      window.scrollTo(0, 0)
     }
 
     // ===== Navegación "una sección por scroll" con scroll interno =====
