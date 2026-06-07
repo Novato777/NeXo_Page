@@ -1,7 +1,27 @@
 import { useState } from "react"
 import ScrollReveal from "./ScrollReveal"
 import { products, buyLink, discountPercent } from "../data/store"
-import { BagIcon, WhatsAppIcon } from "./Icons"
+import { whatsappLink } from "../data/site"
+import { BagIcon, WhatsAppIcon, TruckIcon, HeadphonesIcon } from "./Icons"
+
+// Sellos de confianza que se muestran debajo de las cards.
+const trust = [
+  {
+    icon: WhatsAppIcon,
+    title: "Atención por WhatsApp",
+    sub: "Te respondemos en minutos",
+  },
+  {
+    icon: TruckIcon,
+    title: "Envíos a todo el país",
+    sub: "Recíbelo donde estés",
+  },
+  {
+    icon: HeadphonesIcon,
+    title: "Soporte personalizado",
+    sub: "Te acompañamos en tu compra",
+  },
+]
 
 // Tarjeta de producto estilo Mercado Libre (tema oscuro):
 // imagen · precio grande · precio tachado + % descuento · nombre · botón pedir.
@@ -119,6 +139,48 @@ export default function Store() {
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
+        </div>
+
+        {/* Sellos de confianza */}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {trust.map((t) => {
+            const Icon = t.icon
+            return (
+              <div
+                key={t.title}
+                className="flex items-center gap-3 rounded-xl border border-nexo-border bg-nexo-panel/50 p-4"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-nexo-lime/15 text-nexo-lime">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="font-semibold text-nexo-text">{t.title}</p>
+                  <p className="text-sm text-nexo-muted">{t.sub}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Mensaje que incita a comprar + CTA */}
+        <div className="mt-12 text-center">
+          <p className="mx-auto max-w-2xl text-xl font-semibold text-nexo-text sm:text-2xl">
+            Tu próxima compra está a un{" "}
+            <span className="text-gradient-lime">mensaje</span> de distancia.
+          </p>
+          <p className="mx-auto mt-2 max-w-xl text-base text-nexo-muted">
+            Cuéntanos qué buscas y te ayudamos a elegir. Compra fácil, rápido y
+            seguro.
+          </p>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-lime to-nexo-green px-8 py-4 font-semibold text-nexo-bg shadow-[0_0_40px_-8px_rgba(163,230,53,0.6)] transition-transform hover:scale-105"
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+            Escríbenos por WhatsApp
+          </a>
         </div>
       </div>
     </section>
