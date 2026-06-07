@@ -13,35 +13,36 @@ import { site } from "./site"
 export const products = [
   {
     id: "p1",
-    slug: "audifonos-xiaomi-redmi-airdots",
-    name: "Audífonos Xiaomi Redmi AirDots",
-    price: "$59.900",
-    oldPrice: "$89.900",
+    slug: "audifonos-xiaomi-redmi-airdots-s",
+    name: "Audífonos Xiaomi Redmi AirDots S",
+    price: "$65.000",
+    oldPrice: "", // pon un precio "antes" (ej. "$89.900") si quieres mostrar descuento
     // Imagen principal (también se ve en la card de la tienda).
-    image: "/img/demo-1.png",
+    image: "/img/airdots-s/1.jpg",
     badge: "Más vendido",
     accent: "from-nexo-lime to-nexo-green",
     // Contenido de la landing personalizada -> /producto/<slug>
     landing: {
-      tagline: "Sonido potente y sin cables, listos para tu día a día.",
+      tagline: "Inalámbricos y cómodos: sácalos del estuche y suenan al instante.",
       description:
-        "Disfruta tu música, podcasts y videos con un sonido limpio y responde llamadas con manos libres. Inalámbricos, cómodos y compatibles con cualquier celular: solo conéctalos y listo.",
+        "Auriculares inalámbricos Xiaomi Redmi AirDots S con Bluetooth 5.0. Sonido claro, manos libres para tus llamadas y emparejamiento automático al sacarlos del estuche. Incluyen estuche de carga y un par de tapones de repuesto.",
       benefits: [
-        "Conexión Bluetooth estable y rápida",
+        "Bluetooth 5.0: conexión rápida y estable",
         "Manos libres para tus llamadas",
-        "Batería que te acompaña todo el día",
-        "Compatibles con cualquier celular",
-        "Diseño cómodo y liviano",
+        "Estuche de carga para todo el día (300 mAh)",
+        "Se emparejan solos al sacarlos del estuche",
+        "Livianos y cómodos · alcance de 10 m",
       ],
-      // Fotos extra del producto (galería deslizable). Guarda en public/img/ y
-      // referencia como "/img/airdots-2.png". Estas son de ejemplo.
-      gallery: ["/img/demo-2.png", "/img/demo-3.png"],
+      // Fotos extra (galería deslizable). Carpeta del producto en public/img/.
+      gallery: ["/img/airdots-s/2.jpg"],
       // Video del producto (mp4 en public/img/ o externo). Vacío = sin video.
       video: "",
-      // Enlaces a los videos de publicidad de ESTE producto en cada red.
-      // Reemplaza por el link directo a cada video. Vacío "" = no muestra el botón.
-      tiktok: "https://www.tiktok.com/",
-      instagram: "https://www.instagram.com/",
+      // Enlaces a los videos de publicidad en cada red. Vacío "" = sin botón.
+      tiktok: "",
+      instagram: "",
+      // Resumen de garantía (se muestra en la tarjeta "Garantía y soporte").
+      warranty:
+        "Garantía de 10 días por producto incompleto, defectuoso, roto o diferente. 1 mes por defectos de fábrica.",
     },
   },
   {

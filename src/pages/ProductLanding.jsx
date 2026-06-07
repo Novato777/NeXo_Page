@@ -363,6 +363,9 @@ export default function ProductLanding() {
         <section className="mt-12 grid gap-4 sm:grid-cols-3">
           {info.map((it) => {
             const Icon = it.icon
+            // La garantía usa el texto real del producto si lo tiene.
+            const text =
+              it.title === "Garantía y soporte" && L.warranty ? L.warranty : it.text
             return (
               <div
                 key={it.title}
@@ -372,7 +375,7 @@ export default function ProductLanding() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-3 font-semibold text-nexo-text">{it.title}</h3>
-                <p className="mt-1 text-sm text-nexo-muted">{it.text}</p>
+                <p className="mt-1 text-sm text-nexo-muted">{text}</p>
               </div>
             )
           })}
