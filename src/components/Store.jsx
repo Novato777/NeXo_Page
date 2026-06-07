@@ -151,10 +151,7 @@ export default function Store() {
           {trust.map((t) => {
             const Icon = t.icon
             return (
-              <div
-                key={t.title}
-                className="flex items-center gap-3 rounded-xl border border-nexo-border bg-nexo-panel/50 p-4"
-              >
+              <div key={t.title} className="flex items-center gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-nexo-lime/15 text-nexo-lime">
                   <Icon className="h-5 w-5" />
                 </span>
