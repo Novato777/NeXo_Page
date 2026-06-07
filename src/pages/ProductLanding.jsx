@@ -33,7 +33,7 @@ const info = [
   {
     icon: ShieldCheckIcon,
     title: "Pago fácil y seguro",
-    text: "Paga por Nequi o transferencia. Te confirmamos cada paso.",
+    text: "Paga por transferencia de forma rápida y protegida. Te confirmamos cada paso.",
   },
   {
     icon: HeadphonesIcon,
