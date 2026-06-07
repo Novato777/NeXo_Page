@@ -23,7 +23,8 @@ export const products = [
     accent: "from-nexo-lime to-nexo-green",
     // Contenido de la landing personalizada -> /producto/<slug>
     landing: {
-      tagline: "Inalámbricos y cómodos: sácalos del estuche y suenan al instante.",
+      tagline:
+        "Sonido de calidad, conexión instantánea y comodidad durante todo el día. Ideales para música, llamadas y uso diario.",
       description:
         "Auriculares inalámbricos Xiaomi Redmi AirDots S con Bluetooth 5.0. Sonido claro, manos libres para tus llamadas y emparejamiento automático al sacarlos del estuche. Incluyen estuche de carga y un par de tapones de repuesto.",
       benefits: [
