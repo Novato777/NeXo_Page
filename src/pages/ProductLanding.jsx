@@ -14,6 +14,7 @@ import {
   ChevronRightIcon,
   PlayIcon,
 } from "../components/Icons"
+import { SiTiktok, SiInstagram } from "react-icons/si"
 
 const trust = [
   { icon: WhatsAppIcon, label: "Atención por WhatsApp" },
@@ -275,6 +276,39 @@ export default function ProductLanding() {
               <WhatsAppIcon className="h-5 w-5" />
               Pedir por WhatsApp
             </a>
+
+            {/* Videos de publicidad (TikTok / Instagram) */}
+            {(L.tiktok || L.instagram) && (
+              <div className="mt-5">
+                <p className="text-sm font-medium text-nexo-muted">
+                  Míralo en acción 👀
+                </p>
+                <div className="mt-2 flex flex-wrap gap-3">
+                  {L.tiktok && (
+                    <a
+                      href={L.tiktok}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-nexo-border bg-nexo-panel px-5 py-2.5 text-sm font-semibold text-nexo-text transition-colors hover:border-nexo-cyan hover:text-nexo-cyan"
+                    >
+                      <SiTiktok className="h-4 w-4" />
+                      Ver en TikTok
+                    </a>
+                  )}
+                  {L.instagram && (
+                    <a
+                      href={L.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-nexo-border bg-nexo-panel px-5 py-2.5 text-sm font-semibold text-nexo-text transition-colors hover:border-[#e1306c] hover:text-[#e1306c]"
+                    >
+                      <SiInstagram className="h-4 w-4" />
+                      Ver en Instagram
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Sellos de confianza */}
             <div className="mt-7 grid grid-cols-2 gap-x-5 gap-y-3">

@@ -38,6 +38,10 @@ export const products = [
       gallery: ["/img/demo-2.png", "/img/demo-3.png"],
       // Video del producto (mp4 en public/img/ o externo). Vacío = sin video.
       video: "",
+      // Enlaces a los videos de publicidad de ESTE producto en cada red.
+      // Reemplaza por el link directo a cada video. Vacío "" = no muestra el botón.
+      tiktok: "https://www.tiktok.com/",
+      instagram: "https://www.instagram.com/",
     },
   },
   {
