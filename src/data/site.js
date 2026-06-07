@@ -11,5 +11,5 @@ export const site = {
 
 // Mensaje pre-cargado al abrir WhatsApp
 export const whatsappLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-  "Hola NeXo 👋, vi su página web y me interesa una cotización."
+  "Hola NeXo, vi su página web y me interesa una cotización."
 )}`

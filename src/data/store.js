@@ -111,7 +111,7 @@ export const discountPercent = (product) => {
 // Abre WhatsApp con el pedido del producto ya escrito.
 export const buyLink = (product) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-    `Hola NeXo 👋, quiero pedir *${product.name}*${
+    `Hola NeXo, quiero pedir *${product.name}*${
       product.price && product.price !== "Pronto" ? ` (${product.price})` : ""
     }. ¿Me ayudas?`
   )}`

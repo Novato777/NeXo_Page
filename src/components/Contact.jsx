@@ -61,7 +61,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const msg =
-      `Hola NeXo 👋, soy *${form.nombre || "—"}*` +
+      `Hola NeXo, soy *${form.nombre || "—"}*` +
       (form.negocio ? ` de *${form.negocio}*` : "") +
       `.\nMe interesa: *${form.servicio}*.` +
       (form.mensaje ? `\n\n${form.mensaje}` : "")
@@ -118,11 +118,11 @@ export default function Contact() {
             {/* Columna izquierda: formulario que abre WhatsApp pre-llenado */}
             <div className="relative border-b border-nexo-border p-8 sm:p-10 md:border-b-0 md:border-r md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
               <h3 className="text-2xl font-bold sm:text-3xl">
-                Cuéntanos de tu proyecto
+                Estamos para ayudarte
               </h3>
               <p className="mt-2 text-sm text-nexo-muted">
-                Llena esto y te abrimos WhatsApp con tu mensaje listo. Te
-                respondemos en minutos.
+                Comparte los detalles de tu proyecto y uno de nuestros asesores
+                te responderá por WhatsApp en cuestión de minutos.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5">
