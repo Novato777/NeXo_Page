@@ -1,0 +1,101 @@
+/* ===== Fondo "Hyperspeed" en CSS para iOS (sin WebGL) =====
+   Carretera en perspectiva 3D con estelas de luz que viajan hacia el
+   espectador, imitando el fondo WebGL. Liviano y fluido en Safari iOS. */
+
+.hs-ios {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(85% 55% at 50% 40%, rgba(34, 211, 238, 0.1), transparent 60%),
+    radial-gradient(120% 90% at 50% 100%, #060912 35%, #02040a 100%), #02040a;
+  perspective: 360px;
+  perspective-origin: 50% 42%;
+}
+
+/* Resplandor del horizonte (punto de fuga) */
+.hs-ios__horizon {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 72%;
+  height: 26%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(99, 180, 255, 0.35), transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+/* El "piso" inclinado en perspectiva */
+.hs-ios__road {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 260%;
+  height: 360%;
+  transform: translateX(-50%) rotateX(80deg);
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+}
+
+/* Bordes de la carretera (convergen hacia el horizonte por la perspectiva) */
+.hs-ios__road::before,
+.hs-ios__road::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(34, 211, 238, 0.05) 40%,
+    rgba(34, 211, 238, 0.35) 100%
+  );
+}
+.hs-ios__road::before {
+  left: 34%;
+}
+.hs-ios__road::after {
+  right: 34%;
+}
+
+/* Cada estela de luz (trail de los "carros") */
+.hs-ios__streak {
+  position: absolute;
+  top: 0;
+  height: 20%;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent, var(--c));
+  box-shadow: 0 0 9px 1px var(--c);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: hs-travel;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hs-travel {
+  0% {
+    transform: translateY(0) scaleY(0.5);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(380%) scaleY(1.4);
+    opacity: 0;
+  }
+}
+
+/* Accesibilidad: sin movimiento, queda como una carretera estática y tenue */
+@media (prefers-reduced-motion: reduce) {
+  .hs-ios__streak {
+    animation: none;
+    opacity: 0.22;
+  }
+}

@@ -1,21 +1,32 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react"
+import HeroBackdropIOS from "./HeroBackdropIOS"
 
 // Carga diferida: three.js/postprocessing salen del bundle inicial (code-split)
 const Hyperspeed = lazy(() => import("./Hyperspeed"))
 
-// Perfil "lite" para móvil: menos objetos en escena + menor resolución de
-// render, para que sea fluido también en iOS sin cambiar el look.
+// Perfil "lite" para móvil NO iOS (Android): menos objetos + menor resolución.
 const MOBILE_OVERRIDES = {
   totalSideLightSticks: 10, // antes 20
   lightPairsPerRoadWay: 18, // antes 40
-  maxPixelRatio: 1, // antes hasta 1.5 -> ~2x menos trabajo de GPU
+  maxPixelRatio: 1,
 }
 
-// Capa de fondo Hyperspeed: fija (sticky) sobre el Hero. Activa también en
-// móvil con perfil optimizado, salvo "reducir movimiento" (accesibilidad).
+// Detecta iOS/iPadOS (incluye el iPad que se hace pasar por Mac). En iOS todos
+// los navegadores usan WebKit, así que apuntamos al sistema, no al navegador.
+function detectIOS() {
+  if (typeof navigator === "undefined") return false
+  const ua = navigator.userAgent || ""
+  const iPadAsMac =
+    navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1
+  return /iP(hone|od|ad)/.test(ua) || iPadAsMac
+}
+
+// Capa de fondo del Hero (sticky). En iOS usa un fondo "Hyperspeed" en CSS
+// (sin WebGL, fluido). En Android/PC usa el WebGL real (Three.js).
 export default function HeroHyperspeed({ options }) {
   const [enabled, setEnabled] = useState(false)
   const [mobile, setMobile] = useState(false)
+  const [ios] = useState(detectIOS)
   const [ready, setReady] = useState(false)
   const layerRef = useRef(null)
 
@@ -35,17 +46,18 @@ export default function HeroHyperspeed({ options }) {
     }
   }, [])
 
-  // Difiere el arranque del WebGL para que el contenido pinte primero
-  // (carga percibida más rápida, sobre todo en iOS).
+  // Difiere el arranque del WebGL para que el contenido pinte primero.
+  // (No aplica en iOS, que no carga WebGL.)
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || ios) return
     const t = window.setTimeout(() => setReady(true), 250)
     return () => window.clearTimeout(t)
-  }, [enabled])
+  }, [enabled, ios])
 
-  // Difuminado progresivo según el scroll (0 → 14px en ~1 viewport)
+  // Difuminado progresivo según el scroll (solo WebGL; en iOS evitamos filtrar
+  // una capa animada por rendimiento).
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || ios) return
     let raf = 0
     const onScroll = () => {
       if (raf) return
@@ -64,7 +76,7 @@ export default function HeroHyperspeed({ options }) {
       window.removeEventListener("scroll", onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [enabled])
+  }, [enabled, ios])
 
   // Referencia ESTABLE de opciones (si cambia, Hyperspeed recrea toda la escena).
   const effectOptions = useMemo(
@@ -79,11 +91,13 @@ export default function HeroHyperspeed({ options }) {
 
   return (
     <div ref={layerRef} className="hyperspeed-layer" aria-hidden="true">
-      {ready && (
+      {ios ? (
+        <HeroBackdropIOS />
+      ) : ready ? (
         <Suspense fallback={null}>
           <Hyperspeed effectOptions={effectOptions} />
         </Suspense>
-      )}
+      ) : null}
       <div className="hyperspeed-fade" />
     </div>
   )
