@@ -11,11 +11,19 @@ export default function HeroHyperspeed({ options }) {
   const layerRef = useRef(null)
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const apply = () => setEnabled(!mq.matches)
+    // Desactivado en móvil (rendimiento: Three.js ahoga Safari iOS y tarda en
+    // cargar) y si el usuario prefiere menos movimiento (accesibilidad).
+    // Al quedar deshabilitado, el chunk de Three.js ni siquiera se descarga.
+    const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const mqMobile = window.matchMedia("(max-width: 768px)")
+    const apply = () => setEnabled(!mqReduce.matches && !mqMobile.matches)
     apply()
-    mq.addEventListener("change", apply)
-    return () => mq.removeEventListener("change", apply)
+    mqReduce.addEventListener("change", apply)
+    mqMobile.addEventListener("change", apply)
+    return () => {
+      mqReduce.removeEventListener("change", apply)
+      mqMobile.removeEventListener("change", apply)
+    }
   }, [])
 
   // Difuminado progresivo según el scroll (0 → 14px en ~1 viewport)

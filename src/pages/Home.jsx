@@ -101,6 +101,13 @@ const navItems = [
 export default function Home() {
   // Smooth scroll (Lenis) integrado con GSAP/ScrollTrigger (para el ScrollReveal)
   useEffect(() => {
+    // iOS/Safari restaura el scroll a donde estaba: lo desactivamos para que
+    // la página SIEMPRE abra en el Hero (salvo que el enlace traiga #seccion).
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual"
+    }
+    if (!window.location.hash) window.scrollTo(0, 0)
+
     const lenis = new Lenis({
       duration: 1.0,
       smoothWheel: false, // la rueda la controlamos nosotros (1 sección por scroll)
