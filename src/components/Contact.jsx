@@ -72,7 +72,7 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-12 [@media(max-height:780px)]:py-6"
+      className="relative flex min-h-dvh flex-col justify-center overflow-hidden px-6 py-12 [@media(max-height:780px)]:py-6"
       onMouseEnter={() => setCursorActive(true)}
       onMouseLeave={() => setCursorActive(false)}
     >

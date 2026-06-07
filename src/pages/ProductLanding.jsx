@@ -187,7 +187,7 @@ export default function ProductLanding() {
 
   if (!product) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-nexo-bg px-6 text-center text-nexo-text">
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-5 bg-nexo-bg px-6 text-center text-nexo-text">
         <BagIcon className="h-14 w-14 text-nexo-muted" />
         <h1 className="text-2xl font-bold">Producto no encontrado</h1>
         <a
@@ -204,7 +204,7 @@ export default function ProductLanding() {
   const discount = discountPercent(product)
 
   return (
-    <div className="min-h-screen bg-nexo-bg text-nexo-text">
+    <div className="min-h-dvh bg-nexo-bg text-nexo-text">
       {/* Barra superior */}
       <header className="sticky top-0 z-40 border-b border-nexo-border bg-nexo-bg/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">

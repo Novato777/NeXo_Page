@@ -217,7 +217,7 @@ export default function Portfolio() {
   return (
     <section
       id="portafolio"
-      className="flex min-h-screen flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
+      className="flex min-h-dvh flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
     >
       <div className="mx-auto w-full max-w-6xl px-6">
         {isMobile ? (

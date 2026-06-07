@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6 pt-20"
     >
       {/* Líneas diagonales decorativas (estilo tarjeta) */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -112,7 +112,7 @@ export default function Store() {
   return (
     <section
       id="tienda"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
+      className="relative flex min-h-dvh flex-col justify-center overflow-hidden border-y border-nexo-border bg-nexo-bg2 py-24"
     >
       {/* Resplandor de fondo (verde/lima) */}
       <div className="pointer-events-none absolute right-1/4 top-0 h-[420px] w-[600px] translate-x-1/2 rounded-full bg-nexo-green/10 blur-[130px]" />
