@@ -7,7 +7,6 @@ import Hero from "./components/Hero"
 import Services from "./components/Services"
 import Portfolio from "./components/Portfolio"
 import Store from "./components/Store"
-import StoreBanner from "./components/StoreBanner"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import HeroHyperspeed from "./components/HeroHyperspeed"
@@ -65,6 +64,16 @@ const navItems = [
     ],
   },
   {
+    label: "Portafolio",
+    href: "#portafolio",
+    bgColor: "#0d1730",
+    textColor: "#e8eefc",
+    links: [
+      { label: "BarberControl", ariaLabel: "Ver BarberControl", href: "#portafolio" },
+      { label: "Ver todos", ariaLabel: "Ver portafolio", href: "#portafolio" },
+    ],
+  },
+  {
     label: "Servicios",
     href: "#servicios",
     bgColor: "#0f1a30",
@@ -73,16 +82,6 @@ const navItems = [
       { label: "Páginas web", ariaLabel: "Páginas web", href: "#servicios" },
       { label: "Sistemas a medida", ariaLabel: "Sistemas a medida", href: "#servicios" },
       { label: "Automatizaciones", ariaLabel: "Automatizaciones", href: "#servicios" },
-    ],
-  },
-  {
-    label: "Portafolio",
-    href: "#portafolio",
-    bgColor: "#0d1730",
-    textColor: "#e8eefc",
-    links: [
-      { label: "BarberControl", ariaLabel: "Ver BarberControl", href: "#portafolio" },
-      { label: "Ver todos", ariaLabel: "Ver portafolio", href: "#portafolio" },
     ],
   },
   {
@@ -122,7 +121,7 @@ export default function App() {
     const getSections = () =>
       Array.from(
         document.querySelectorAll(
-          "#inicio, #tienda, #servicios, #portafolio, #contacto, footer"
+          "#inicio, #tienda, #portafolio, #servicios, #contacto, footer"
         )
       )
 
@@ -232,10 +231,9 @@ export default function App() {
         </div>
         {/* Capa superior opaca: de la tienda en adelante SIEMPRE por encima del fondo */}
         <div className="relative z-10 bg-nexo-bg">
-          <StoreBanner />
           <Store />
-          <Services />
           <Portfolio />
+          <Services />
           <Contact />
         </div>
       </main>

@@ -24,8 +24,8 @@ import {
 const nav = [
   { label: "Inicio", href: "#inicio" },
   { label: "Tienda", href: "#tienda" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Portafolio", href: "#portafolio" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Contacto", href: "#contacto" },
 ]
 
