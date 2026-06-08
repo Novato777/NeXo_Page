@@ -48,12 +48,36 @@ export const products = [
   },
   {
     id: "p2",
-    name: "Tu producto aquí",
-    price: "$39.900",
-    oldPrice: "",
-    image: "",
-    badge: "Nuevo",
+    slug: "combo-reloj-hr6-ultra3-airpods",
+    name: "Combo Reloj HR6 Ultra3 + AirPods",
+    price: "$120.000",
+    oldPrice: "", // pon un precio "antes" si quieres mostrar descuento
+    image: "/img/combo-hr6-ultra3/1.jpg",
+    badge: "Súper combo",
     accent: "from-nexo-green to-nexo-lime",
+    landing: {
+      tagline:
+        "Reloj inteligente + AirPods + 2 pulsos intercambiables. Todo en un solo combo.",
+      description:
+        "Combo completo: un reloj deportivo inteligente de 49 mm que recibe tus notificaciones y llamadas, más unos AirPods de 2da generación de calidad premium. Incluye 2 pulsos intercambiables para que cambies de estilo cuando quieras.",
+      benefits: [
+        "Reloj deportivo inteligente de 49 mm",
+        "Notificaciones de WhatsApp, llamadas, Instagram y más",
+        "2 pulsos intercambiables para cambiar de estilo",
+        "AirPods de 2da generación – calidad premium",
+        "Todo en un solo combo, listo para usar",
+      ],
+      gallery: [
+        "/img/combo-hr6-ultra3/2.jpg",
+        "/img/combo-hr6-ultra3/3.jpg",
+        "/img/combo-hr6-ultra3/4.jpg",
+      ],
+      video: "",
+      tiktok: "",
+      instagram: "",
+      warranty:
+        "Garantía de 30 días por producto incompleto, partido o dañado, o defecto de fábrica.",
+    },
   },
   {
     id: "p3",
