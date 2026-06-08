@@ -81,12 +81,35 @@ export const products = [
   },
   {
     id: "p3",
-    name: "Otro producto",
-    price: "$79.900",
-    oldPrice: "",
-    image: "",
-    badge: "",
+    slug: "gafas-fotocromaticas-clubmaster",
+    name: "Gafas Fotocromáticas Clubmaster",
+    price: "$89.900",
+    oldPrice: "", // pon un precio "antes" si quieres mostrar descuento
+    image: "/img/gafas-fotocromaticas/1.jpg",
+    badge: "2 en 1",
     accent: "from-nexo-lime to-nexo-green",
+    landing: {
+      tagline:
+        "Estilo Clubmaster con tecnología fotocromática: se oscurecen al sol y se aclaran en interiores.",
+      description:
+        "Dale a tu look un toque elegante y funcional con estas gafas estilo Clubmaster con tecnología fotocromática. Se oscurecen automáticamente con la luz del sol y vuelven a su tono claro en interiores. Incluyen paño y estuche.",
+      benefits: [
+        "Protección inteligente: bloquean los rayos UV",
+        "2 en 1: claras en interiores, oscuras en exteriores",
+        "Filtro Blue Block: cuidan tu vista de las pantallas",
+        "Diseño icónico estilo Clubmaster que no pasa de moda",
+        "Marco en goma · incluyen paño y estuche",
+      ],
+      gallery: [
+        "/img/gafas-fotocromaticas/2.jpg",
+        "/img/gafas-fotocromaticas/3.jpg",
+      ],
+      video: "",
+      tiktok: "",
+      instagram: "",
+      warranty:
+        "Garantía de 10 días por producto incompleto, mal funcionamiento, producto roto o producto diferente.",
+    },
   },
   {
     id: "p4",
