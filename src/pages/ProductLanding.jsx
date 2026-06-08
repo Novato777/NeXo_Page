@@ -18,7 +18,7 @@ import { SiTiktok, SiInstagram } from "react-icons/si"
 
 const trust = [
   { icon: WhatsAppIcon, label: "Atención por WhatsApp" },
-  { icon: TruckIcon, label: "Envíos a todo el país" },
+  { icon: TruckIcon, label: "Envío gratis a todo el país" },
   { icon: ShieldCheckIcon, label: "Compras seguras" },
   { icon: HeadphonesIcon, label: "Soporte personalizado" },
 ]
@@ -27,8 +27,8 @@ const trust = [
 const info = [
   {
     icon: TruckIcon,
-    title: "Envíos a todo el país",
-    text: "Despachamos a toda Colombia. Coordinamos el envío por WhatsApp.",
+    title: "Envío gratis",
+    text: "Despachamos a toda Colombia, sin costo de envío para ti.",
   },
   {
     icon: ShieldCheckIcon,
@@ -267,6 +267,11 @@ export default function ProductLanding() {
                 </span>
               )}
             </div>
+
+            <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-nexo-lime">
+              <TruckIcon className="h-4 w-4" />
+              Envío gratis a todo el país
+            </p>
 
             {/* CTA WhatsApp */}
             <a

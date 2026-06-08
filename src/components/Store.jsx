@@ -14,8 +14,8 @@ const trust = [
   },
   {
     icon: TruckIcon,
-    title: "Envíos a todo el país",
-    sub: "Recíbelo donde estés",
+    title: "Envío gratis",
+    sub: "A todo el país",
   },
   {
     icon: ShieldCheckIcon,
@@ -80,6 +80,13 @@ function ProductCard({ product }) {
         <h3 className="mt-1.5 line-clamp-2 text-sm text-nexo-muted">
           {product.name}
         </h3>
+
+        {!soon && (
+          <p className="mt-1 flex items-center gap-1 text-xs font-semibold text-nexo-lime">
+            <TruckIcon className="h-3.5 w-3.5" />
+            Envío gratis
+          </p>
+        )}
 
         {soon ? (
           <span className="mt-3 inline-flex w-full items-center justify-center rounded-lg border border-nexo-border px-3 py-2 text-sm font-semibold text-nexo-muted">
