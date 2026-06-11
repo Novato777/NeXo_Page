@@ -142,12 +142,35 @@ export const products = [
   },
   {
     id: "p5",
-    name: "Producto premium",
-    price: "$129.900",
-    oldPrice: "",
-    image: "",
-    badge: "",
+    slug: "combo-tech-premium",
+    name: "Combo Tech Premium — Bolso + Audífonos F9",
+    price: "$99.000",
+    oldPrice: "", // pon un precio "antes" si quieres mostrar descuento
+    image: "/img/combo-tech-premium/1.jpg",
+    badge: "Premium",
     accent: "from-nexo-lime to-nexo-green",
+    landing: {
+      tagline:
+        "Estilo + sonido en un solo combo: bolso impermeable con puerto USB + audífonos F9 Bluetooth.",
+      description:
+        "La combinación perfecta de diseño y tecnología. Un bolso tipo bandolera impermeable, seguro y resistente, con puerto USB de carga, más unos audífonos F9 Bluetooth 5.0 con estuche power bank y pantalla LED inteligente. Estilo y sonido para tu día a día.",
+      benefits: [
+        "Bolso impermeable, seguro y resistente",
+        "Puerto USB de carga integrado en el bolso",
+        "Audífonos F9 con Bluetooth 5.0",
+        "Estuche con power bank y pantalla LED inteligente",
+        "Diseño moderno: estilo + sonido",
+      ],
+      gallery: [
+        "/img/combo-tech-premium/2.jpg",
+        "/img/combo-tech-premium/3.jpg",
+      ],
+      video: "",
+      tiktok: "",
+      instagram: "",
+      warranty:
+        "Garantía de 30 días por producto incompleto, partido o dañado, o defecto de fábrica.",
+    },
   },
   {
     id: "p6",
