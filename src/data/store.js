@@ -113,12 +113,32 @@ export const products = [
   },
   {
     id: "p4",
-    name: "Producto en oferta",
-    price: "$24.900",
-    oldPrice: "$34.900",
-    image: "",
-    badge: "Oferta",
+    slug: "combo-tecno-papa",
+    name: "Combo Tecno Papá — Reloj + Auriculares",
+    price: "$110.000",
+    oldPrice: "", // pon un precio "antes" si quieres mostrar descuento
+    image: "/img/combo-tecno-papa/1.jpg",
+    badge: "Para papá",
     accent: "from-nexo-green to-nexo-lime",
+    landing: {
+      tagline:
+        "El regalo perfecto para papá: reloj inteligente + auriculares inalámbricos. Conectado, activo y con estilo.",
+      description:
+        "La combinación perfecta de tecnología y comodidad para su día a día. Un reloj inteligente con pantalla táctil HD que monitorea su salud y recibe notificaciones, más unos auriculares inalámbricos con sonido estéreo de alta fidelidad. Dos productos, infinitas posibilidades, un solo combo.",
+      benefits: [
+        "Reloj inteligente con pantalla táctil HD",
+        "Monitorea tu salud + modo deportivo",
+        "Notificaciones de llamadas y mensajes",
+        "Auriculares inalámbricos con sonido estéreo HD",
+        "Bluetooth estable, cómodos y de larga batería",
+      ],
+      gallery: ["/img/combo-tecno-papa/2.jpg", "/img/combo-tecno-papa/3.jpg"],
+      video: "",
+      tiktok: "",
+      instagram: "",
+      warranty:
+        "Garantía de 30 días por producto incompleto, partido o dañado, o defecto de fábrica.",
+    },
   },
   {
     id: "p5",
