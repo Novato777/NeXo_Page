@@ -118,7 +118,7 @@ export const products = [
     price: "$110.000",
     oldPrice: "", // pon un precio "antes" si quieres mostrar descuento
     image: "/img/combo-tecno-papa/1.jpg",
-    badge: "Para papá",
+    badge: "Regalo ideal",
     accent: "from-nexo-green to-nexo-lime",
     landing: {
       tagline:
