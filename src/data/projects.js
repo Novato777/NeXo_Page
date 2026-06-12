@@ -27,18 +27,6 @@ export const projects = [
     accent: "from-nexo-blue to-nexo-cyan",
   },
   {
-    id: "carniceria",
-    title: "El Buen Corte",
-    category: "Carnicería · Landing",
-    description:
-      "Landing para carnicería: cortes, combos de parrilla y pedidos por WhatsApp.",
-    tags: ["React", "Landing", "WhatsApp"],
-    link: "/carniceria",
-    domain: "elbuencorte.com",
-    image: "/img/carnes/hero.jpg",
-    accent: "from-red-700 to-amber-500",
-  },
-  {
     id: "tu-negocio",
     title: "Tu negocio aquí",
     category: "Tu próximo proyecto",
