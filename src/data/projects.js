@@ -27,6 +27,18 @@ export const projects = [
     accent: "from-nexo-blue to-nexo-cyan",
   },
   {
+    id: "el-buen-corte",
+    title: "El Buen Corte",
+    category: "Software de gestión",
+    description:
+      "Software para carnicerías: reportes y caja, pedidos, inventario, nómina y cálculo del aprovechamiento de cada res.",
+    tags: ["React", "SaaS", "Software"],
+    link: "https://el-buen-corte-eight.vercel.app",
+    domain: "el-buen-corte-eight.vercel.app",
+    image: screenshotUrl("https://el-buen-corte-eight.vercel.app"),
+    accent: "from-red-700 to-amber-500",
+  },
+  {
     id: "tu-negocio",
     title: "Tu negocio aquí",
     category: "Tu próximo proyecto",
@@ -37,16 +49,5 @@ export const projects = [
     domain: "tunegocio.com",
     image: "",
     accent: "from-nexo-cyan to-nexo-blue",
-  },
-  {
-    id: "proximo",
-    title: "Próximamente",
-    category: "En construcción",
-    description: "Nuevos proyectos de NeXo en camino. ¡Vuelve pronto!",
-    tags: ["Pronto"],
-    link: "",
-    domain: "nexo.com",
-    image: "",
-    accent: "from-nexo-blue to-nexo-cyan",
   },
 ]
