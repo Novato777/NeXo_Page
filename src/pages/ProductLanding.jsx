@@ -32,8 +32,8 @@ const info = [
   },
   {
     icon: ShieldCheckIcon,
-    title: "Pago fácil y seguro",
-    text: "Paga por transferencia de forma rápida y protegida. Te confirmamos cada paso.",
+    title: "Pago contra entrega",
+    text: "Pagas al recibir tu pedido, en la puerta de tu casa. Sin riesgos.",
   },
   {
     icon: HeadphonesIcon,
@@ -272,6 +272,19 @@ export default function ProductLanding() {
               <TruckIcon className="h-4 w-4" />
               Envío gratis a todo el país
             </p>
+
+            {/* Pago contra entrega — destacado */}
+            <div className="mt-4 flex items-center gap-3 rounded-xl border border-nexo-lime/30 bg-nexo-lime/5 p-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-nexo-lime/15 text-nexo-lime">
+                <ShieldCheckIcon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="font-bold text-nexo-text">Pago contra entrega</p>
+                <p className="text-xs text-nexo-muted sm:text-sm">
+                  Pagas al recibir, en la puerta de tu casa.
+                </p>
+              </div>
+            </div>
 
             {/* CTA WhatsApp */}
             <a
