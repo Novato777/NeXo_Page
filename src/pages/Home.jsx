@@ -103,7 +103,7 @@ export default function Home() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.0,
-      smoothWheel: false, // la rueda la controlamos nosotros (1 sección por scroll)
+      smoothWheel: true, // la rueda funciona de forma normal y fluida
       anchors: true, // los enlaces #seccion siguen funcionando suave
     })
 
@@ -126,109 +126,7 @@ export default function Home() {
       window.scrollTo(0, 0)
     }
 
-    // ===== Navegación "una sección por scroll" con scroll interno =====
-    // En secciones más altas que la pantalla, primero revela el resto de la
-    // sección (arriba/abajo) y SOLO después salta a la siguiente. Así no corta.
-    const ease = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t))
-    const EPS = 8 // tolerancia en px para considerar "ya estoy al borde"
-
-    const getSections = () =>
-      Array.from(
-        document.querySelectorAll(
-          "#inicio, #tienda, #portafolio, #servicios, #contacto, footer"
-        )
-      )
-
-    let locked = false
-
-    const scrollToY = (y) => {
-      locked = true
-      lenis.scrollTo(y, {
-        duration: 0.9,
-        easing: ease,
-        lock: true,
-        onComplete: () => {
-          window.setTimeout(() => {
-            locked = false
-          }, 120)
-        },
-      })
-    }
-
-    // Índice de la sección que ocupa la parte superior de la pantalla
-    const currentIndex = () => {
-      const sections = getSections()
-      const y = window.scrollY + 2
-      let best = 0
-      let bestDist = Infinity
-      for (let i = 0; i < sections.length; i++) {
-        const r = sections[i].getBoundingClientRect()
-        const top = r.top + window.scrollY
-        if (y >= top && y < top + r.height) return i
-        const d = Math.abs(top - y)
-        if (d < bestDist) {
-          bestDist = d
-          best = i
-        }
-      }
-      return best
-    }
-
-    const step = (dir) => {
-      if (locked) return
-      const sections = getSections()
-      const idx = currentIndex()
-      const sec = sections[idx]
-      if (!sec) return
-      const rect = sec.getBoundingClientRect()
-      const vh = window.innerHeight
-
-      if (dir > 0) {
-        // ¿Hay contenido debajo dentro de esta misma sección? -> revélalo
-        if (rect.bottom > vh + EPS) {
-          scrollToY(window.scrollY + (rect.bottom - vh))
-        } else if (idx < sections.length - 1) {
-          scrollToY(window.scrollY + sections[idx + 1].getBoundingClientRect().top)
-        }
-      } else {
-        // ¿Hay contenido encima dentro de esta misma sección? -> súbelo
-        if (rect.top < -EPS) {
-          scrollToY(window.scrollY + rect.top)
-        } else if (idx > 0) {
-          scrollToY(window.scrollY + sections[idx - 1].getBoundingClientRect().top)
-        }
-      }
-    }
-
-    const onWheel = (e) => {
-      e.preventDefault()
-      step(e.deltaY > 0 ? 1 : -1)
-    }
-    window.addEventListener("wheel", onWheel, { passive: false })
-
-    const onKey = (e) => {
-      const tag = e.target?.tagName
-      if (
-        tag === "INPUT" ||
-        tag === "TEXTAREA" ||
-        tag === "SELECT" ||
-        e.target?.isContentEditable
-      ) {
-        return
-      }
-      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
-        e.preventDefault()
-        step(1)
-      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
-        e.preventDefault()
-        step(-1)
-      }
-    }
-    window.addEventListener("keydown", onKey)
-
     return () => {
-      window.removeEventListener("wheel", onWheel)
-      window.removeEventListener("keydown", onKey)
       gsap.ticker.remove(onTick)
       lenis.destroy()
     }
