@@ -6,7 +6,10 @@ import CardNav from "../components/CardNav"
 import Hero from "../components/Hero"
 import Services from "../components/Services"
 import Portfolio from "../components/Portfolio"
-import Store from "../components/Store"
+// Tienda (NeXo Drop) deshabilitada por ahora. Para reactivarla, descomenta
+// este import, su render más abajo, el item "Tienda" del menú y la ruta de
+// producto en App.jsx.
+// import Store from "../components/Store"
 import Contact from "../components/Contact"
 import Footer from "../components/Footer"
 import HeroHyperspeed from "../components/HeroHyperspeed"
@@ -55,16 +58,6 @@ const hyperspeedOptions = {
 
 const navItems = [
   {
-    label: "Tienda",
-    href: "#tienda",
-    bgColor: "#0e2316",
-    textColor: "#e8fce8",
-    links: [
-      { label: "Ver productos", ariaLabel: "Ver la tienda NeXo Drop", href: "#tienda" },
-      { label: "Ofertas", ariaLabel: "Ver ofertas", href: "#tienda" },
-    ],
-  },
-  {
     label: "Portafolio",
     href: "#portafolio",
     bgColor: "#0d1730",
@@ -99,7 +92,7 @@ const navItems = [
 ]
 
 export default function Home() {
-  // Smooth scroll (Lenis) integrado con GSAP/ScrollTrigger (para el ScrollReveal)
+  // Smooth scroll (Lenis) integrado con GSAP/ScrollTrigger (para el ScrollReveal).
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.0,
@@ -120,7 +113,7 @@ export default function Home() {
     if (intent) {
       const target = document.getElementById(intent)
       if (target) {
-        window.setTimeout(() => lenis.scrollTo(target, { immediate: true }), 80)
+        window.setTimeout(() => target.scrollIntoView(), 60)
       }
     } else {
       window.scrollTo(0, 0)
@@ -147,7 +140,7 @@ export default function Home() {
         </div>
         {/* Capa superior opaca: de la tienda en adelante SIEMPRE por encima del fondo */}
         <div className="relative z-10 bg-nexo-bg">
-          <Store />
+          {/* <Store /> — tienda NeXo Drop deshabilitada por ahora */}
           <Portfolio />
           <Services />
           <Contact />
