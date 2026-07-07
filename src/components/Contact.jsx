@@ -1,14 +1,7 @@
 import { useState } from "react"
-import TargetCursor from "./TargetCursor"
-import ScrollReveal from "./ScrollReveal"
+import Reveal from "./Reveal"
 import { site, whatsappLink } from "../data/site"
-import {
-  WhatsAppIcon,
-  MailIcon,
-  MapPinIcon,
-  ClockIcon,
-  ArrowUpRightIcon,
-} from "./Icons"
+import { WhatsAppIcon, MailIcon, MapPinIcon, ClockIcon, ArrowUpRightIcon } from "./Icons"
 
 const serviceOptions = [
   "Página web",
@@ -18,36 +11,13 @@ const serviceOptions = [
 ]
 
 const methods = [
-  {
-    icon: WhatsAppIcon,
-    label: "WhatsApp",
-    value: site.whatsappDisplay,
-    href: whatsappLink,
-    external: true,
-  },
-  {
-    icon: MailIcon,
-    label: "Correo",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
-  {
-    icon: MapPinIcon,
-    label: "Ubicación",
-    value: site.location,
-    href: "https://maps.google.com/?q=La+Dorada+Caldas",
-    external: true,
-  },
-  {
-    icon: ClockIcon,
-    label: "Horario",
-    value: "Lun a Sáb · 8am - 7pm",
-    href: null,
-  },
+  { icon: WhatsAppIcon, label: "WhatsApp", value: site.whatsappDisplay, href: whatsappLink, external: true },
+  { icon: MailIcon, label: "Correo", value: site.email, href: `mailto:${site.email}` },
+  { icon: MapPinIcon, label: "Ubicación", value: site.location, href: "https://maps.google.com/?q=La+Dorada+Caldas", external: true },
+  { icon: ClockIcon, label: "Horario", value: "Lun a Sáb · 8am - 7pm", href: null },
 ]
 
 export default function Contact() {
-  const [cursorActive, setCursorActive] = useState(false)
   const [form, setForm] = useState({
     nombre: "",
     negocio: "",
@@ -55,8 +25,7 @@ export default function Contact() {
     mensaje: "",
   })
 
-  const handleChange = (e) =>
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -69,168 +38,86 @@ export default function Contact() {
     window.open(url, "_blank", "noopener")
   }
 
+  const inputClass =
+    "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-colors placeholder:text-slate-400 focus:border-nexo-blue focus:outline-none focus:ring-2 focus:ring-blue-100"
+
   return (
-    <section
-      id="contacto"
-      className="relative flex min-h-dvh flex-col justify-center overflow-hidden px-6 py-12 [@media(max-height:780px)]:py-6"
-      onMouseEnter={() => setCursorActive(true)}
-      onMouseLeave={() => setCursorActive(false)}
-    >
-      {/* Target Cursor: solo activo dentro de esta sección */}
-      {cursorActive && (
-        <TargetCursor spinDuration={2} hideDefaultCursor hoverDuration={0.2} parallaxOn />
-      )}
-
-      {/* Resplandores de fondo */}
-      <div className="pointer-events-none absolute left-1/4 top-0 h-[420px] w-[600px] -translate-x-1/2 rounded-full bg-nexo-blue/10 blur-[60px] sm:blur-[130px]" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-[360px] w-[520px] translate-x-1/4 rounded-full bg-nexo-cyan/10 blur-[60px] sm:blur-[130px]" />
-
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        {/* Encabezado */}
-        <div className="mb-8 text-center [@media(max-height:780px)]:mb-4">
-          <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-nexo-cyan sm:w-14" />
-            <span className="text-sm font-bold uppercase tracking-[0.35em] text-nexo-cyan">
-              Hablemos
-            </span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-nexo-cyan sm:w-14" />
-          </div>
-          <ScrollReveal
-            containerClassName="flex justify-center"
-            textClassName="text-5xl font-extrabold tracking-tight sm:text-6xl"
-            wordClassName="text-gradient drop-shadow-[0_0_35px_rgba(34,211,238,0.35)]"
-            baseRotation={2}
-            blurStrength={5}
-          >
+    <section id="contacto" className="bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+            Hablemos
+          </span>
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
             ¿Listo para crecer?
-          </ScrollReveal>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-nexo-muted sm:text-xl">
-            Escríbenos y armamos juntos la solución para tu negocio.{" "}
-            <span className="font-semibold text-nexo-text">
-              La primera asesoría es gratis.
-            </span>
+          </h2>
+          <p className="mt-4 text-lg text-slate-600">
+            Cuéntanos tu proyecto y te respondemos por WhatsApp en minutos.{" "}
+            <span className="font-semibold text-slate-900">La primera asesoría es gratis.</span>
           </p>
-        </div>
+        </Reveal>
 
-        {/* Panel principal con borde glow animado */}
-        <div className="contact-glow overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Columna izquierda: formulario que abre WhatsApp pre-llenado */}
-            <div className="relative border-b border-nexo-border p-8 sm:p-10 md:border-b-0 md:border-r md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
-              <h3 className="text-2xl font-bold sm:text-3xl">
-                Estamos para ayudarte
-              </h3>
-              <p className="mt-2 text-sm text-nexo-muted">
-                Comparte los detalles de tu proyecto y uno de nuestros asesores
-                te responderá por WhatsApp en cuestión de minutos.
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
+          {/* Formulario */}
+          <Reveal className="lg:col-span-3">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <h3 className="text-xl font-bold text-slate-900">Cuéntanos de tu proyecto</h3>
+              <p className="mt-1 text-sm text-slate-500">
+                Llena esto y te abrimos WhatsApp con tu mensaje listo.
               </p>
-
-              <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5">
+              <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <input
-                    name="nombre"
-                    value={form.nombre}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tu nombre *"
-                    className="cursor-target w-full rounded-xl border border-nexo-border bg-nexo-bg px-4 py-3 text-nexo-text transition-colors placeholder:text-nexo-muted/60 focus:border-nexo-cyan focus:outline-none focus:ring-1 focus:ring-nexo-cyan"
-                  />
-                  <input
-                    name="negocio"
-                    value={form.negocio}
-                    onChange={handleChange}
-                    placeholder="Tu negocio (opcional)"
-                    className="cursor-target w-full rounded-xl border border-nexo-border bg-nexo-bg px-4 py-3 text-nexo-text transition-colors placeholder:text-nexo-muted/60 focus:border-nexo-cyan focus:outline-none focus:ring-1 focus:ring-nexo-cyan"
-                  />
+                  <input name="nombre" value={form.nombre} onChange={handleChange} required placeholder="Tu nombre *" className={inputClass} />
+                  <input name="negocio" value={form.negocio} onChange={handleChange} placeholder="Tu negocio (opcional)" className={inputClass} />
                 </div>
-
-                <select
-                  name="servicio"
-                  value={form.servicio}
-                  onChange={handleChange}
-                  className="cursor-target w-full rounded-xl border border-nexo-border bg-nexo-bg px-4 py-3 text-nexo-text transition-colors focus:border-nexo-cyan focus:outline-none focus:ring-1 focus:ring-nexo-cyan"
-                >
+                <select name="servicio" value={form.servicio} onChange={handleChange} className={inputClass}>
                   {serviceOptions.map((s) => (
-                    <option key={s} value={s} className="bg-nexo-bg">
-                      {s}
-                    </option>
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
-
-                <textarea
-                  name="mensaje"
-                  value={form.mensaje}
-                  onChange={handleChange}
-                  rows={3}
-                  placeholder="¿Qué necesitas? (opcional)"
-                  className="cursor-target w-full resize-none rounded-xl border border-nexo-border bg-nexo-bg px-4 py-3 text-nexo-text transition-colors placeholder:text-nexo-muted/60 focus:border-nexo-cyan focus:outline-none focus:ring-1 focus:ring-nexo-cyan"
-                />
-
+                <textarea name="mensaje" value={form.mensaje} onChange={handleChange} rows={4} placeholder="¿Qué necesitas? (opcional)" className={`${inputClass} resize-none`} />
                 <button
                   type="submit"
-                  className="cursor-target glow inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-6 py-4 font-semibold text-nexo-bg transition-transform hover:scale-[1.02] sm:px-8"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-8 py-4 font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-[1.02] sm:w-auto sm:self-start sm:px-10"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   Enviar por WhatsApp
                 </button>
               </form>
-
-              <div className="mt-5 flex items-center gap-2 text-sm text-nexo-muted">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nexo-cyan opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-nexo-cyan" />
-                </span>
-                Disponibles para nuevos proyectos
-              </div>
             </div>
+          </Reveal>
 
-            {/* Columna derecha: métodos de contacto (tarjetas) */}
-            <div className="flex flex-col justify-center gap-3 p-8 sm:p-10 md:p-12 [@media(max-height:780px)]:p-6 [@media(max-height:780px)]:md:p-8">
-              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.25em] text-nexo-muted">
+          {/* Métodos de contacto */}
+          <Reveal delay={90} className="lg:col-span-2">
+            <div className="flex h-full flex-col gap-3">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                 O escríbenos directo
               </p>
               {methods.map((m) => {
                 const Icon = m.icon
-                const content = (
+                const inner = (
                   <>
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-nexo-cyan/20 bg-gradient-to-br from-nexo-blue/20 to-nexo-cyan/20 text-nexo-cyan transition-transform duration-300 group-hover:scale-110">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 text-nexo-blue ring-1 ring-inset ring-blue-100">
                       <Icon className="h-5 w-5" />
-                    </div>
+                    </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-nexo-muted">
-                        {m.label}
-                      </p>
-                      <p className="truncate font-medium text-nexo-text">
-                        {m.value}
-                      </p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{m.label}</p>
+                      <p className="truncate font-medium text-slate-900">{m.value}</p>
                     </div>
-                    {m.href && (
-                      <ArrowUpRightIcon className="h-4 w-4 shrink-0 text-nexo-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-nexo-cyan" />
-                    )}
+                    {m.href && <ArrowUpRightIcon className="h-4 w-4 shrink-0 text-slate-400 transition-colors group-hover:text-nexo-blue" />}
                   </>
                 )
-
-                const cardClass =
-                  "cursor-target group flex items-center gap-4 rounded-2xl border border-nexo-border/60 bg-nexo-bg/40 p-4 transition-all duration-300"
-
+                const cls = "group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition-all"
                 return m.href ? (
-                  <a
-                    key={m.label}
-                    href={m.href}
-                    target={m.external ? "_blank" : undefined}
-                    rel={m.external ? "noreferrer" : undefined}
-                    className={`${cardClass} hover:translate-x-1 hover:border-nexo-cyan/40 hover:bg-nexo-bg/70`}
-                  >
-                    {content}
+                  <a key={m.label} href={m.href} target={m.external ? "_blank" : undefined} rel={m.external ? "noreferrer" : undefined} className={`${cls} hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md`}>
+                    {inner}
                   </a>
                 ) : (
-                  <div key={m.label} className={cardClass}>
-                    {content}
-                  </div>
+                  <div key={m.label} className={cls}>{inner}</div>
                 )
               })}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

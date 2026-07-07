@@ -1,60 +1,76 @@
-import Logo from "./Logo"
-import { site, whatsappLink } from "../data/site"
-import { WhatsAppIcon } from "./Icons"
+import { whatsappLink } from "../data/site"
+import { WhatsAppIcon, ArrowUpRightIcon, CheckIcon } from "./Icons"
+
+const pilares = ["Hecho a tu medida", "Entrega ágil", "Soporte continuo"]
 
 export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6 pt-20"
+      className="relative overflow-hidden bg-white pt-32 pb-20 sm:pt-40 sm:pb-28"
     >
-      {/* Líneas diagonales decorativas (estilo tarjeta) */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-20 top-1/4 h-px w-96 rotate-45 bg-gradient-to-r from-transparent via-nexo-cyan/40 to-transparent" />
-        <div className="absolute -right-20 bottom-1/4 h-px w-96 rotate-45 bg-gradient-to-r from-transparent via-nexo-blue/40 to-transparent" />
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-nexo-cyan/10 blur-[55px] sm:blur-[120px]" />
+      {/* Fondo sutil: cuadrícula + resplandor claro (nada saturado) */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.5]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#eef2f7 1px, transparent 1px), linear-gradient(90deg, #eef2f7 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+            maskImage: "radial-gradient(ellipse 70% 55% at 50% 30%, black, transparent 75%)",
+          }}
+        />
+        <div className="absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-gradient-to-b from-cyan-100/70 via-blue-50/60 to-transparent blur-3xl" />
       </div>
 
-      <div className="animate-fade-up relative z-10 flex flex-col items-center text-center">
-        <Logo
-          size={300}
-          className="animate-float -mb-6 [filter:drop-shadow(0_0_25px_rgba(34,211,238,0.7))_drop-shadow(0_0_60px_rgba(59,130,246,0.45))] sm:size-[350px]"
-        />
+      <div className="animate-fade-up relative mx-auto max-w-4xl px-6 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Agencia de desarrollo de software
+        </span>
 
-        <h1 className="text-7xl font-extrabold tracking-tight sm:text-8xl lg:text-9xl">
-          Ne<span className="text-gradient">X</span>o
+        <h1 className="mt-7 text-5xl font-extrabold leading-[1.04] tracking-tight text-slate-900 sm:text-7xl">
+          Software que <span className="text-gradient">impulsa</span>
+          <br className="hidden sm:block" /> tu negocio
         </h1>
 
-        <div className="my-7 h-px w-56 bg-gradient-to-r from-transparent via-nexo-cyan to-transparent" />
-
-        <p className="max-w-3xl text-2xl font-medium text-white [text-shadow:0_0_22px_rgba(34,211,238,0.5)] sm:text-3xl">
-          {site.slogan}
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Diseñamos y desarrollamos{" "}
+          <strong className="font-semibold text-slate-900">páginas web</strong>,{" "}
+          <strong className="font-semibold text-slate-900">sistemas a medida</strong> y{" "}
+          <strong className="font-semibold text-slate-900">automatizaciones</strong> que
+          hacen crecer a las empresas.
         </p>
 
-        <p className="mt-5 max-w-2xl text-base text-white/85 [text-shadow:0_0_16px_rgba(34,211,238,0.4)] sm:text-lg">
-          Diseñamos{" "}
-          <strong className="font-semibold text-nexo-cyan">páginas web</strong>,{" "}
-          <strong className="font-semibold text-nexo-cyan">sistemas a medida</strong> y{" "}
-          <strong className="font-semibold text-nexo-cyan">automatizaciones</strong> para
-          impulsar tu negocio.
-        </p>
-
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={whatsappLink}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-10 py-4 text-lg font-semibold text-nexo-bg shadow-[0_0_40px_-8px_rgba(34,211,238,0.6)] transition-transform duration-300 hover:scale-105"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-[1.03] sm:w-auto"
           >
             <WhatsAppIcon className="h-5 w-5" />
-            Hablar por WhatsApp
+            Hablemos de tu proyecto
           </a>
           <a
             href="#portafolio"
-            className="rounded-full border border-nexo-cyan/40 bg-nexo-blue/25 px-10 py-4 text-lg font-semibold text-white shadow-[0_0_35px_-8px_rgba(34,211,238,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-nexo-cyan hover:bg-nexo-blue/35"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-base font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50 sm:w-auto"
           >
             Ver portafolio
+            <ArrowUpRightIcon className="h-4 w-4" />
           </a>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-slate-500">
+          {pilares.map((p) => (
+            <span key={p} className="inline-flex items-center gap-2">
+              <CheckIcon className="h-4 w-4 text-nexo-blue" />
+              {p}
+            </span>
+          ))}
         </div>
       </div>
     </section>
