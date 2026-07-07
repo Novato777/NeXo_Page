@@ -42,25 +42,44 @@ export default function Contact() {
     "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-colors placeholder:text-slate-400 focus:border-nexo-blue focus:outline-none focus:ring-2 focus:ring-blue-100"
 
   return (
-    <section id="contacto" className="bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6">
+    <section
+      id="contacto"
+      className="relative overflow-hidden bg-gradient-to-br from-nexo-indigo via-nexo-blue to-nexo-navy py-20 text-white sm:py-28"
+    >
+      {/* Decoración */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
+            backgroundSize: "26px 26px",
+            maskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 80%)",
+          }}
+        />
+        <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
+        <div className="absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-indigo-400/20 blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+          <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">
+            <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-cyan-300 to-white/60" />
             Hablemos
           </span>
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             ¿Listo para crecer?
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-blue-100">
             Cuéntanos tu proyecto y te respondemos por WhatsApp en minutos.{" "}
-            <span className="font-semibold text-slate-900">La primera asesoría es gratis.</span>
+            <span className="font-semibold text-white">La primera asesoría es gratis.</span>
           </p>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
-          {/* Formulario */}
+          {/* Formulario (card blanca) */}
           <Reveal className="lg:col-span-3">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-3xl bg-white p-6 shadow-2xl shadow-black/20 sm:p-8">
               <h3 className="text-xl font-bold text-slate-900">Cuéntanos de tu proyecto</h3>
               <p className="mt-1 text-sm text-slate-500">
                 Llena esto y te abrimos WhatsApp con tu mensaje listo.
@@ -78,7 +97,7 @@ export default function Contact() {
                 <textarea name="mensaje" value={form.mensaje} onChange={handleChange} rows={4} placeholder="¿Qué necesitas? (opcional)" className={`${inputClass} resize-none`} />
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-blue to-nexo-cyan px-8 py-4 font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-[1.02] sm:w-auto sm:self-start sm:px-10"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nexo-indigo to-nexo-blue px-8 py-4 font-semibold text-white shadow-lg shadow-blue-500/25 transition-transform hover:scale-[1.02] sm:w-auto sm:self-start sm:px-10"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   Enviar por WhatsApp
@@ -87,29 +106,29 @@ export default function Contact() {
             </div>
           </Reveal>
 
-          {/* Métodos de contacto */}
+          {/* Métodos (cards translúcidas) */}
           <Reveal delay={90} className="lg:col-span-2">
             <div className="flex h-full flex-col gap-3">
-              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
                 O escríbenos directo
               </p>
               {methods.map((m) => {
                 const Icon = m.icon
                 const inner = (
                   <>
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 text-nexo-blue ring-1 ring-inset ring-blue-100">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white ring-1 ring-inset ring-white/25 backdrop-blur">
                       <Icon className="h-5 w-5" />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{m.label}</p>
-                      <p className="truncate font-medium text-slate-900">{m.value}</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-blue-200/80">{m.label}</p>
+                      <p className="truncate font-medium text-white">{m.value}</p>
                     </div>
-                    {m.href && <ArrowUpRightIcon className="h-4 w-4 shrink-0 text-slate-400 transition-colors group-hover:text-nexo-blue" />}
+                    {m.href && <ArrowUpRightIcon className="h-4 w-4 shrink-0 text-blue-200 transition-colors group-hover:text-white" />}
                   </>
                 )
-                const cls = "group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition-all"
+                const cls = "group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all"
                 return m.href ? (
-                  <a key={m.label} href={m.href} target={m.external ? "_blank" : undefined} rel={m.external ? "noreferrer" : undefined} className={`${cls} hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md`}>
+                  <a key={m.label} href={m.href} target={m.external ? "_blank" : undefined} rel={m.external ? "noreferrer" : undefined} className={`${cls} hover:-translate-y-0.5 hover:bg-white/15`}>
                     {inner}
                   </a>
                 ) : (

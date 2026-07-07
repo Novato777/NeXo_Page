@@ -58,16 +58,17 @@ const COMPACT = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="relative overflow-hidden bg-slate-50 py-20 sm:py-28">
+    <section id="servicios" className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 py-20 sm:py-28">
       {/* Manchas de color de fondo (para que no se vea tan plano) */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl" />
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl" />
         <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-cyan-200/40 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="max-w-2xl">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+          <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+            <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-nexo-indigo to-nexo-cyan" />
             Lo que hacemos
           </span>
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
@@ -79,32 +80,33 @@ export default function Services() {
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Destacada — degradado */}
+          {/* Destacada — azul → cian */}
           <Reveal className="sm:col-span-2">
             <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-nexo-blue to-nexo-cyan p-8 text-white shadow-xl shadow-blue-500/20">
-              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/15 blur-2xl" />
               <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
               <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 ring-1 ring-inset ring-white/30 backdrop-blur">
                 <Icon paths={FEATURED.icon} className="h-7 w-7" />
               </span>
               <h3 className="relative mt-6 text-2xl font-bold">{FEATURED.title}</h3>
               <p className="relative mt-2 max-w-sm text-[15px] leading-relaxed text-white/90">{FEATURED.text}</p>
-              <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset ring-white/25">
+              <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-950 shadow">
                 Nuestro fuerte
               </span>
             </div>
           </Reveal>
 
-          {/* Oscura */}
+          {/* Destacada — indigo → azul */}
           <Reveal delay={90} className="sm:col-span-2">
-            <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl">
-              <div className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full bg-nexo-blue/25 blur-3xl" />
-              <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-nexo-blue to-nexo-cyan text-white shadow-lg shadow-blue-500/30">
+            <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-nexo-indigo to-nexo-blue p-8 text-white shadow-xl shadow-indigo-500/20">
+              <div className="pointer-events-none absolute -right-12 -top-8 h-44 w-44 rounded-full bg-white/15 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-14 -left-12 h-48 w-48 rounded-full bg-cyan-300/20 blur-2xl" />
+              <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 ring-1 ring-inset ring-white/30 backdrop-blur">
                 <Icon paths={DARK.icon} className="h-7 w-7" />
               </span>
               <h3 className="relative mt-6 text-2xl font-bold">{DARK.title}</h3>
-              <p className="relative mt-2 max-w-sm text-[15px] leading-relaxed text-slate-300">{DARK.text}</p>
-              <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-300 ring-1 ring-inset ring-white/15">
+              <p className="relative mt-2 max-w-sm text-[15px] leading-relaxed text-white/90">{DARK.text}</p>
+              <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset ring-white/25">
                 A tu medida
               </span>
             </div>
@@ -113,8 +115,8 @@ export default function Services() {
           {/* Compactas */}
           {COMPACT.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <div className="group h-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-nexo-blue/30 hover:shadow-lg">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 text-nexo-blue ring-1 ring-inset ring-blue-100 transition-colors group-hover:from-nexo-blue group-hover:to-nexo-cyan group-hover:text-white group-hover:ring-transparent">
+              <div className="group h-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-nexo-blue/30 hover:shadow-xl">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-50 to-cyan-50 text-nexo-blue ring-1 ring-inset ring-blue-100 transition-colors group-hover:from-nexo-indigo group-hover:to-nexo-cyan group-hover:text-white group-hover:ring-transparent">
                   <Icon paths={s.icon} />
                 </span>
                 <h3 className="mt-5 text-base font-bold text-slate-900">{s.title}</h3>

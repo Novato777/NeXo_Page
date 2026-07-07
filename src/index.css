@@ -8,6 +8,10 @@
   --color-nexo-border: #1c2740;    /* bordes sutiles */
   --color-nexo-blue: #3b82f6;      /* azul eléctrico */
   --color-nexo-cyan: #22d3ee;      /* cian acento */
+  --color-nexo-indigo: #4f46e5;    /* indigo — profundidad */
+  --color-nexo-sky: #38bdf8;       /* sky — derivado claro */
+  --color-nexo-amber: #f59e0b;     /* ámbar — complementario del azul */
+  --color-nexo-navy: #0b1224;      /* navy suave — finales / CTA oscuro */
   --color-nexo-lime: #a3e635;      /* lima — acento de NeXo Drop (tienda) */
   --color-nexo-green: #22c55e;     /* verde — acento de NeXo Drop (tienda) */
   --color-nexo-text: #e8eefc;      /* texto principal */
@@ -57,6 +61,64 @@ body {
 /* Resplandor suave para acentos */
 .glow {
   box-shadow: 0 0 40px -10px rgba(34, 211, 238, 0.45);
+}
+
+/* ===== Fondos de marca reutilizables ===== */
+
+/* Malla de color suave (mezcla indigo/azul/cian, muy sutil sobre claro) */
+.bg-mesh {
+  background-image:
+    radial-gradient(48% 45% at 12% 8%, rgba(79, 70, 229, 0.12), transparent 62%),
+    radial-gradient(46% 42% at 88% 12%, rgba(34, 211, 238, 0.14), transparent 60%),
+    radial-gradient(55% 55% at 50% 108%, rgba(59, 130, 246, 0.12), transparent 60%);
+}
+
+/* Cuadrícula de puntos sutil */
+.bg-dots {
+  background-image: radial-gradient(rgba(100, 116, 139, 0.28) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Cuadrícula de líneas sutil */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 54px 54px;
+}
+
+/* Degradado de texto extendido: indigo -> azul -> cian */
+.text-gradient-lg {
+  background: linear-gradient(120deg, #4f46e5 0%, #2563eb 45%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Borde con degradado (marco de card distintivo) */
+.gradient-ring {
+  position: relative;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(79, 70, 229, 0.35), rgba(34, 211, 238, 0.35)) border-box;
+  border: 1px solid transparent;
+}
+
+/* Resplandor detrás del wordmark gigante del Hero */
+.brand-glow {
+  filter: blur(46px);
+  background:
+    radial-gradient(closest-side, rgba(79, 70, 229, 0.35), transparent),
+    radial-gradient(closest-side, rgba(34, 211, 238, 0.30), transparent);
+}
+
+/* Flotación lenta para elementos decorativos */
+@keyframes nexo-float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float-slow {
+  animation: nexo-float-slow 6s ease-in-out infinite;
 }
 
 /* Ocultar la barra de scroll (carrusel) */

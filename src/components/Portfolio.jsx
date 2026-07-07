@@ -115,7 +115,8 @@ export default function Portfolio() {
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-xl">
-            <span className="text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+            <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-nexo-blue">
+              <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-nexo-indigo to-nexo-cyan" />
               Nuestro trabajo
             </span>
             <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
