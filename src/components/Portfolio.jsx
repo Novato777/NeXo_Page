@@ -46,8 +46,8 @@ function Card({ p }) {
   return (
     <Wrapper
       {...wrapperProps}
-      className={`group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 ${
-        isLink ? "hover:-translate-y-1 hover:border-nexo-blue/30 hover:shadow-xl" : ""
+      className={`group flex h-full flex-col rounded-3xl border border-slate-300 bg-gradient-to-b from-slate-100 to-slate-200/70 p-5 shadow-lg shadow-slate-900/10 ring-1 ring-slate-900/5 transition-all duration-300 ${
+        isLink ? "hover:-translate-y-1 hover:border-nexo-blue/40 hover:shadow-xl" : ""
       }`}
     >
       <Preview project={p} />
