@@ -30,7 +30,9 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
         <a href="#inicio" className="flex items-center gap-2.5" aria-label="NeXo inicio">
-          <Logo size={34} />
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 shadow-sm ring-1 ring-slate-800">
+            <Logo size={26} />
+          </span>
           <span className="text-2xl font-extrabold tracking-tight text-slate-900">
             Ne<span className="text-gradient">X</span>o
           </span>

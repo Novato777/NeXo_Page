@@ -24,13 +24,9 @@ export default function Hero() {
       </div>
 
       <div className="animate-fade-up relative mx-auto max-w-4xl px-6 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          Agencia de desarrollo de software
-        </span>
+        <p className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          Ne<span className="text-gradient">X</span>o
+        </p>
 
         <h1 className="mt-7 text-5xl font-extrabold leading-[1.04] tracking-tight text-slate-900 sm:text-7xl">
           Software que <span className="text-gradient">impulsa</span>
