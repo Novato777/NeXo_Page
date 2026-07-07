@@ -44,7 +44,7 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative overflow-hidden bg-gradient-to-br from-nexo-indigo via-nexo-blue to-nexo-navy py-20 text-white sm:py-28"
+      className="relative overflow-hidden bg-gradient-to-br from-nexo-indigo via-nexo-blue to-nexo-navy py-14 text-white sm:py-28"
     >
       {/* Decoración */}
       <div className="pointer-events-none absolute inset-0">

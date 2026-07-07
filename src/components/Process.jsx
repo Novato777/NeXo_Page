@@ -9,7 +9,7 @@ const PASOS = [
 
 export default function Process() {
   return (
-    <section id="proceso" className="relative overflow-hidden bg-gradient-to-b from-white via-indigo-50/40 to-white py-20 sm:py-28">
+    <section id="proceso" className="relative overflow-hidden bg-gradient-to-b from-white via-indigo-50/40 to-white py-14 sm:py-28">
       {/* Puntos + blobs suaves */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -21,7 +21,8 @@ export default function Process() {
 
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-nexo-indigo">
+          <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-nexo-indigo">
+            <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-nexo-indigo to-nexo-cyan" />
             Cómo trabajamos
           </span>
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
@@ -32,21 +33,22 @@ export default function Process() {
           </p>
         </Reveal>
 
-        <div className="relative mt-16">
-          {/* Línea conectora (desktop) */}
-          <div className="absolute left-8 right-8 top-9 hidden h-0.5 rounded-full bg-gradient-to-r from-nexo-indigo/40 via-nexo-blue/40 to-nexo-cyan/40 lg:block" />
+        <div className="relative mt-12 sm:mt-16">
+          {/* Línea conectora — vertical en móvil, horizontal en desktop */}
+          <div className="absolute left-7 top-8 bottom-8 w-0.5 -translate-x-1/2 rounded-full bg-gradient-to-b from-nexo-indigo/50 via-nexo-blue/40 to-nexo-cyan/40 lg:hidden" />
+          <div className="absolute left-8 right-8 top-8 hidden h-0.5 rounded-full bg-gradient-to-r from-nexo-indigo/40 via-nexo-blue/40 to-nexo-cyan/40 lg:block" />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-7 lg:grid-cols-4 lg:gap-6">
             {PASOS.map((p, i) => (
               <Reveal key={p.n} delay={i * 100}>
-                <div className="gradient-ring group relative h-full rounded-3xl p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex items-center gap-4">
-                    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-nexo-indigo to-nexo-cyan text-xl font-black text-white shadow-lg shadow-blue-500/25 ring-4 ring-white">
-                      {p.n}
-                    </span>
+                <div className="relative flex flex-row items-start gap-4 lg:flex-col lg:gap-0">
+                  <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-nexo-indigo to-nexo-cyan text-lg font-black text-white shadow-lg shadow-blue-500/25 ring-4 ring-white sm:h-16 sm:w-16 sm:text-xl">
+                    {p.n}
+                  </span>
+                  <div className="pt-1 lg:mt-5 lg:pt-0">
                     <h3 className="text-lg font-bold text-slate-900">{p.title}</h3>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">{p.text}</p>
                   </div>
-                  <p className="mt-4 text-[15px] leading-relaxed text-slate-600">{p.text}</p>
                 </div>
               </Reveal>
             ))}

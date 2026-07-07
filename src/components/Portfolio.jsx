@@ -111,7 +111,7 @@ export default function Portfolio() {
   const last = projects.length - 1
 
   return (
-    <section id="portafolio" className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 py-20 sm:py-28">
+    <section id="portafolio" className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 py-14 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-xl">
