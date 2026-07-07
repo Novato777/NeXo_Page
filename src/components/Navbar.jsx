@@ -29,8 +29,8 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <a href="#inicio" className="flex items-center gap-2" aria-label="NeXo inicio">
-          <Logo size={46} className="drop-shadow-[0_2px_8px_rgba(37,99,235,0.25)]" />
+        <a href="#inicio" className="flex items-center gap-1" aria-label="NeXo inicio">
+          <Logo size={60} className="-my-2 drop-shadow-[0_2px_8px_rgba(37,99,235,0.3)]" />
           <span className="text-[26px] font-extrabold tracking-tight text-slate-900">
             Ne<span className="text-gradient">X</span>o
           </span>
