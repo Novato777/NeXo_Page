@@ -43,7 +43,7 @@ export const projects = [
     title: "SystemPro",
     category: "Software de gestión",
     description:
-      "Software administrativo a medida para la gestión unificada de negocios familiares. Controla reservas de hoteles, ventas de restaurantes, compras a proveedores y reportes de caja diarios en PDF.",
+      "Software desarrollado 100% a medida para unificar la gestión de múltiples negocios familiares en un solo lugar (hotel, restaurante y ventas). Diseñamos soluciones personalizadas según las necesidades de cada cliente.",
     tags: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS"],
     link: "https://sistema-mam.vercel.app/",
     domain: "sistema-mam.vercel.app",
