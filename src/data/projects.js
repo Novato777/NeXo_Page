@@ -33,9 +33,9 @@ export const projects = [
     description:
       "Software para carnicerías: reportes y caja, pedidos, inventario, nómina y cálculo del aprovechamiento de cada res.",
     tags: ["React", "SaaS", "Software"],
-    link: "https://el-buen-corte-eight.vercel.app",
-    domain: "el-buen-corte-eight.vercel.app",
-    image: screenshotUrl("https://el-buen-corte-eight.vercel.app"),
+    link: "https://el-buen-corte-8ehy.vercel.app/",
+    domain: "el-buen-corte-8ehy.vercel.app",
+    image: screenshotUrl("https://el-buen-corte-8ehy.vercel.app/"),
     accent: "from-red-700 to-amber-500",
   },
   {
