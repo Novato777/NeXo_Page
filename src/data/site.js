@@ -13,3 +13,19 @@ export const site = {
 export const whatsappLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
   "Hola NeXo, vi su página web y me interesa una cotización."
 )}`
+
+// Helper para generar enlaces a WhatsApp con mensajes personalizados
+export const getWhatsAppLink = (message) =>
+  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`
+
+// Enlaces de WhatsApp para Servicio Técnico
+export const pcServiceWhatsAppLink = getWhatsAppLink(
+  "Hola NeXo 👋, necesito servicio técnico para mi computador. Quisiera solicitar un diagnóstico."
+)
+export const printerServiceWhatsAppLink = getWhatsAppLink(
+  "Hola NeXo 👋, necesito servicio técnico para mi impresora. Quisiera solicitar un diagnóstico."
+)
+export const techHelpWhatsAppLink = getWhatsAppLink(
+  "Hola NeXo 👋, mi equipo está presentando problemas y quisiera orientación técnica para saber qué solución requiere."
+)
+

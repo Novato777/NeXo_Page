@@ -1,7 +1,11 @@
 import { whatsappLink } from "../data/site"
 import { WhatsAppIcon, ArrowUpRightIcon, CheckIcon } from "./Icons"
 
-const pilares = ["Hecho a tu medida", "Entrega ágil", "Soporte continuo"]
+const pilares = [
+  { label: "Hecho a tu medida", href: null },
+  { label: "Entrega ágil", href: null },
+  { label: "Servicio técnico para PC e impresoras", href: "#servicio-tecnico" },
+]
 const stack = ["React", "Node.js", "PostgreSQL", "Tailwind", "Vercel"]
 
 export default function Hero() {
@@ -28,7 +32,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500" />
             </span>
-            Agencia de desarrollo de software
+            Desarrollo de software & servicio técnico
           </span>
         </div>
 
@@ -49,8 +53,13 @@ export default function Hero() {
           Diseñamos y desarrollamos{" "}
           <strong className="font-semibold text-slate-900">páginas web</strong>,{" "}
           <strong className="font-semibold text-slate-900">sistemas a medida</strong> y{" "}
-          <strong className="font-semibold text-slate-900">automatizaciones</strong> que hacen
-          crecer a las empresas.
+          <strong className="font-semibold text-slate-900">automatizaciones</strong>. Además, respaldamos tu operación con{" "}
+          <a
+            href="#servicio-tecnico"
+            className="font-semibold text-nexo-blue underline decoration-nexo-blue/30 underline-offset-4 transition-colors hover:text-nexo-indigo hover:decoration-nexo-indigo"
+          >
+            servicio técnico especializado
+          </a>.
         </p>
 
         {/* CTAs */}
@@ -75,15 +84,24 @@ export default function Hero() {
 
         {/* Pilares */}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-2.5">
-          {pilares.map((p) => (
-            <span
-              key={p}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur"
-            >
-              <CheckIcon className="h-4 w-4 text-nexo-blue" />
-              {p}
-            </span>
-          ))}
+          {pilares.map((p) => {
+            const isLink = Boolean(p.href)
+            const Tag = isLink ? "a" : "span"
+            return (
+              <Tag
+                key={p.label}
+                href={p.href}
+                className={`inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur transition-all ${
+                  isLink
+                    ? "hover:-translate-y-0.5 hover:border-nexo-blue/40 hover:bg-white hover:text-nexo-blue"
+                    : ""
+                }`}
+              >
+                <CheckIcon className="h-4 w-4 text-nexo-blue" />
+                {p.label}
+              </Tag>
+            )
+          })}
         </div>
 
         {/* Stack tecnológico */}

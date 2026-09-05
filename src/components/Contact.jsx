@@ -7,6 +7,8 @@ const serviceOptions = [
   "Página web",
   "Sistema a medida",
   "Automatización",
+  "Servicio técnico: Computador",
+  "Servicio técnico: Impresora",
   "Otro / No estoy seguro",
 ]
 

@@ -24,6 +24,7 @@ import {
 const nav = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
+  { label: "Servicio Técnico", href: "#servicio-tecnico" },
   { label: "Portafolio", href: "#portafolio" },
   { label: "Contacto", href: "#contacto" },
 ]
@@ -52,7 +53,8 @@ const services = [
   "Páginas web",
   "Sistemas a medida",
   "Automatizaciones",
-  "Soporte y mantenimiento",
+  "Servicio técnico: Computadores",
+  "Servicio técnico: Impresoras",
 ]
 
 export default function Footer() {

@@ -5,6 +5,7 @@ import { WhatsAppIcon } from "./Icons"
 
 const links = [
   { label: "Servicios", href: "#servicios" },
+  { label: "Servicio Técnico", href: "#servicio-tecnico" },
   { label: "Proceso", href: "#proceso" },
   { label: "Portafolio", href: "#portafolio" },
   { label: "Contacto", href: "#contacto" },
@@ -22,11 +23,18 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-slate-200/80 bg-white/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled
+          ? "linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.60) 100%)"
+          : "linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.45) 100%)",
+        backdropFilter: "blur(28px) saturate(200%)",
+        WebkitBackdropFilter: "blur(28px) saturate(200%)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.85)",
+        boxShadow: scrolled
+          ? "0 10px 35px -5px rgba(0, 0, 0, 0.08), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 0 rgba(255, 255, 255, 0.4)"
+          : "0 4px 25px -2px rgba(0, 0, 0, 0.05), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 0 rgba(255, 255, 255, 0.3)",
+      }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a href="#inicio" className="flex items-center gap-1" aria-label="NeXo inicio">
@@ -36,13 +44,23 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Enlaces en píldora esmerilada */}
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/60 px-2 py-1 shadow-sm backdrop-blur md:flex">
+        {/* Enlaces en píldora de cristal esmerilado */}
+        <nav
+          className="hidden items-center gap-0.5 rounded-full px-2 py-1 shadow-sm md:flex lg:gap-1"
+          style={{
+            background: "rgba(255, 255, 255, 0.55)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255, 255, 255, 0.85)",
+            boxShadow:
+              "inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(0, 0, 0, 0.03)",
+          }}
+        >
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+              className="rounded-full px-3 py-1.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-white/80 hover:text-slate-950 lg:px-4 lg:text-sm"
             >
               {l.label}
             </a>
